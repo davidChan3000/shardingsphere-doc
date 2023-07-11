@@ -1512,11 +1512,11 @@
 <tr class="b">
 <td>org/apache/shardingsphere/metadata/persist/MetaDataPersistService.java</td>
 <td>shardingsphere-metadata-core</td>
-<td><a href="./xref/org/apache/shardingsphere/metadata/persist/MetaDataPersistService.html#L76">76</a></td></tr>
+<td><a href="./xref/org/apache/shardingsphere/metadata/persist/MetaDataPersistService.html#L80">80</a></td></tr>
 <tr class="a">
 <td>org/apache/shardingsphere/metadata/persist/NewMetaDataPersistService.java</td>
 <td>shardingsphere-metadata-core</td>
-<td><a href="./xref/org/apache/shardingsphere/metadata/persist/NewMetaDataPersistService.html#L77">77</a></td></tr>
+<td><a href="./xref/org/apache/shardingsphere/metadata/persist/NewMetaDataPersistService.html#L81">81</a></td></tr>
 <tr class="b"><td colspan='3'>
 <div>
 <pre>metaDataVersionPersistService = new MetaDataVersionPersistService(repository);
@@ -1536,7 +1536,7 @@
         if (dataSourcePropertiesMap.isEmpty() &amp;&amp; databaseConfigs.getRuleConfigurations().isEmpty()) {
             databaseMetaDataService.addDatabase(databaseName);
         } else {
-            dataSourceService.persist(databaseName, getDataSourcePropertiesMap(databaseConfigs.getDataSources()));
+            dataSourceUnitService.persist(databaseName, getDataSourcePropertiesMap(databaseConfigs.getDataSources()));
             databaseRulePersistService.persist(databaseName, decorateRuleConfigs(databaseName, dataSources, rules));
         }
     }
@@ -1565,7 +1565,7 @@
     
     @Override
     public Map&lt;String, DataSource&gt; getEffectiveDataSources(final String databaseName, final Map&lt;String, ? extends DatabaseConfiguration&gt; databaseConfigs) {
-        Map&lt;String, DataSourceProperties&gt; persistedDataPropsMap = dataSourceService.load(databaseName);
+        Map&lt;String, DataSourceProperties&gt; persistedDataPropsMap = dataSourceUnitService.load(databaseName);
         return databaseConfigs.containsKey(databaseName)
                 ? mergeEffectiveDataSources(persistedDataPropsMap, databaseConfigs.get(databaseName).getDataSources())
                 : DataSourcePoolCreator.create(persistedDataPropsMap);
@@ -3480,7 +3480,7 @@ public final class AgentReflectionUtils {
 <tr class="a">
 <td>org/apache/shardingsphere/mode/manager/ContextManager.java</td>
 <td>shardingsphere-mode-core</td>
-<td><a href="./xref/org/apache/shardingsphere/mode/manager/ContextManager.html#L431">431</a></td></tr>
+<td><a href="./xref/org/apache/shardingsphere/mode/manager/ContextManager.html#L465">465</a></td></tr>
 <tr class="b"><td colspan='3'>
 <div>
 <pre>metaDataContexts.get().getMetaData().getDatabases().putAll(renewDatabase(metaDataContexts.get().getMetaData().getDatabase(databaseName), switchingResource));
@@ -3652,6 +3652,57 @@ public final class AgentReflectionUtils {
     
     @Override
     public final ASTNode visitSynonymName(final SynonymNameContext ctx) {</pre></div></td></tr></table>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>File</th>
+<th>Project</th>
+<th>Line</th></tr>
+<tr class="b">
+<td>org/apache/shardingsphere/metadata/persist/service/config/database/datasource/DataSourceNodePersistService.java</td>
+<td>shardingsphere-metadata-core</td>
+<td><a href="./xref/org/apache/shardingsphere/metadata/persist/service/config/database/datasource/DataSourceNodePersistService.html#L61">61</a></td></tr>
+<tr class="a">
+<td>org/apache/shardingsphere/metadata/persist/service/config/database/datasource/DataSourceUnitPersistService.java</td>
+<td>shardingsphere-metadata-core</td>
+<td><a href="./xref/org/apache/shardingsphere/metadata/persist/service/config/database/datasource/DataSourceUnitPersistService.html#L61">61</a></td></tr>
+<tr class="b"><td colspan='3'>
+<div>
+<pre>DatabaseMetaDataNode.getMetaDataDataSourceNodesPath(databaseName, getDatabaseActiveVersion(databaseName)))) : new LinkedHashMap&lt;&gt;();
+    }
+    
+    private boolean isExisted(final String databaseName) {
+        return !Strings.isNullOrEmpty(getDatabaseActiveVersion(databaseName)) &amp;&amp; !Strings.isNullOrEmpty(repository.getDirectly(DatabaseMetaDataNode.getMetaDataDataSourceUnitsPath(databaseName,
+                getDatabaseActiveVersion(databaseName))));
+    }
+    
+    @SuppressWarnings(&quot;unchecked&quot;)
+    private Map&lt;String, DataSourceProperties&gt; getDataSourceProperties(final String yamlContent) {
+        Map&lt;String, Map&lt;String, Object&gt;&gt; yamlDataSources = YamlEngine.unmarshal(yamlContent, Map.class);
+        if (yamlDataSources.isEmpty()) {
+            return new LinkedHashMap&lt;&gt;();
+        }
+        Map&lt;String, DataSourceProperties&gt; result = new LinkedHashMap&lt;&gt;(yamlDataSources.size());
+        yamlDataSources.forEach((key, value) -&gt; result.put(key, new YamlDataSourceConfigurationSwapper().swapToDataSourceProperties(value)));
+        return result;
+    }
+    
+    /**
+     * Append data source properties map.
+     * 
+     * @param databaseName database name
+     * @param toBeAppendedDataSourcePropsMap data source properties map to be appended
+     */
+    @Override
+    public void append(final String databaseName, final Map&lt;String, DataSourceProperties&gt; toBeAppendedDataSourcePropsMap) {
+        Map&lt;String, DataSourceProperties&gt; dataSourceConfigs = load(databaseName);
+        dataSourceConfigs.putAll(toBeAppendedDataSourcePropsMap);
+        persist(databaseName, dataSourceConfigs);
+    }
+    
+    private String getDatabaseActiveVersion(final String databaseName) {
+        return repository.getDirectly(DatabaseMetaDataNode.getActiveVersionPath(databaseName));
+    }
+}</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -7920,6 +7971,34 @@ public final class AgentReflectionUtils {
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
+<td>org/apache/shardingsphere/metadata/persist/service/config/database/datasource/DataSourceNodePersistService.java</td>
+<td>shardingsphere-metadata-core</td>
+<td><a href="./xref/org/apache/shardingsphere/metadata/persist/service/config/database/datasource/DataSourceNodePersistService.html#L49">49</a></td></tr>
+<tr class="a">
+<td>org/apache/shardingsphere/metadata/persist/service/config/database/datasource/DataSourceUnitPersistService.java</td>
+<td>shardingsphere-metadata-core</td>
+<td><a href="./xref/org/apache/shardingsphere/metadata/persist/service/config/database/datasource/DataSourceUnitPersistService.html#L49">49</a></td></tr>
+<tr class="b"><td colspan='3'>
+<div>
+<pre>repository.persist(DatabaseMetaDataNode.getMetaDataDataSourceNodesPath(databaseName, getDatabaseActiveVersion(databaseName)),
+                YamlEngine.marshal(swapYamlDataSourceConfiguration(dataSourceConfigs)));
+    }
+    
+    private Map&lt;String, Map&lt;String, Object&gt;&gt; swapYamlDataSourceConfiguration(final Map&lt;String, DataSourceProperties&gt; dataSourcePropsMap) {
+        return dataSourcePropsMap.entrySet().stream()
+                .collect(Collectors.toMap(Entry::getKey, entry -&gt; new YamlDataSourceConfigurationSwapper().swapToMap(entry.getValue()), (oldValue, currentValue) -&gt; oldValue, LinkedHashMap::new));
+    }
+    
+    @Override
+    public Map&lt;String, DataSourceProperties&gt; load(final String databaseName) {
+        return isExisted(databaseName) ? getDataSourceProperties(repository.getDirectly(
+                DatabaseMetaDataNode.getMetaDataDataSourceNodesPath(databaseName, getDatabaseActiveVersion(databaseName)))) : new LinkedHashMap&lt;&gt;();</pre></div></td></tr></table>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>File</th>
+<th>Project</th>
+<th>Line</th></tr>
+<tr class="b">
 <td>org/apache/shardingsphere/sql/parser/mysql/visitor/statement/MySQLStatementVisitor.java</td>
 <td>shardingsphere-parser-sql-mysql</td>
 <td><a href="./xref/org/apache/shardingsphere/sql/parser/mysql/visitor/statement/MySQLStatementVisitor.html#L497">497</a></td></tr>
@@ -9180,6 +9259,28 @@ public final class AgentReflectionUtils {
         return LoggingOrder.ORDER;
     }
 }</pre></div></td></tr></table>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>File</th>
+<th>Project</th>
+<th>Line</th></tr>
+<tr class="b">
+<td>org/apache/shardingsphere/mode/manager/cluster/coordinator/registry/metadata/watcher/MetaDataChangedWatcher.java</td>
+<td>shardingsphere-cluster-mode-core</td>
+<td><a href="./xref/org/apache/shardingsphere/mode/manager/cluster/coordinator/registry/metadata/watcher/MetaDataChangedWatcher.html#L161">161</a></td></tr>
+<tr class="a">
+<td>org/apache/shardingsphere/mode/manager/cluster/coordinator/registry/metadata/watcher/MetaDataChangedWatcher.java</td>
+<td>shardingsphere-cluster-mode-core</td>
+<td><a href="./xref/org/apache/shardingsphere/mode/manager/cluster/coordinator/registry/metadata/watcher/MetaDataChangedWatcher.html#L171">171</a></td></tr>
+<tr class="b"><td colspan='3'>
+<div>
+<pre>private DataSourceUnitsChangedEvent createDataSourceUnitsChangedEvent(final String databaseName, final String databaseVersion, final DataChangedEvent event) {
+        Map&lt;String, Map&lt;String, Object&gt;&gt; yamlDataSources = YamlEngine.unmarshal(event.getValue(), Map.class);
+        Map&lt;String, DataSourceProperties&gt; dataSourcePropertiesMap = yamlDataSources.isEmpty()
+                ? new HashMap&lt;&gt;()
+                : yamlDataSources.entrySet().stream().collect(Collectors.toMap(
+                        Entry::getKey, entry -&gt; new YamlDataSourceConfigurationSwapper().swapToDataSourceProperties(entry.getValue()), (oldValue, currentValue) -&gt; oldValue, LinkedHashMap::new));
+        return new DataSourceUnitsChangedEvent(databaseName, databaseVersion, dataSourcePropertiesMap);</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -10641,35 +10742,6 @@ public final class AgentReflectionUtils {
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td>org/apache/shardingsphere/proxy/backend/handler/distsql/rul/sql/PreviewExecutor.java</td>
-<td>shardingsphere-proxy-backend-core</td>
-<td><a href="./xref/org/apache/shardingsphere/proxy/backend/handler/distsql/rul/sql/PreviewExecutor.html#L148">148</a></td></tr>
-<tr class="a">
-<td>org/apache/shardingsphere/proxy/backend/opengauss/handler/admin/OpenGaussSystemCatalogAdminQueryExecutor.java</td>
-<td>shardingsphere-proxy-backend-opengauss</td>
-<td><a href="./xref/org/apache/shardingsphere/proxy/backend/opengauss/handler/admin/OpenGaussSystemCatalogAdminQueryExecutor.html#L106">106</a></td></tr>
-<tr class="b"><td colspan='3'>
-<div>
-<pre>private JDBCExecutorCallback&lt;ExecuteResult&gt; createPreviewFederationCallback(final DatabaseType protocolType, final Map&lt;String, DatabaseType&gt; storageTypes, final SQLStatement sqlStatement) {
-        return new JDBCExecutorCallback&lt;ExecuteResult&gt;(protocolType, storageTypes, sqlStatement, SQLExecutorExceptionHandler.isExceptionThrown()) {
-            
-            @Override
-            protected ExecuteResult executeSQL(final String sql, final Statement statement, final ConnectionMode connectionMode, final DatabaseType storageType) throws SQLException {
-                return new JDBCStreamQueryResult(statement.executeQuery(sql));
-            }
-            
-            @Override
-            protected Optional&lt;ExecuteResult&gt; getSaneResult(final SQLStatement sqlStatement, final SQLException ex) {
-                return Optional.empty();
-            }
-        };
-    }</pre></div></td></tr></table>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>File</th>
-<th>Project</th>
-<th>Line</th></tr>
-<tr class="b">
 <td>org/apache/shardingsphere/shadow/route/engine/dml/ShadowDeleteStatementRoutingEngine.java</td>
 <td>shardingsphere-shadow-core</td>
 <td><a href="./xref/org/apache/shardingsphere/shadow/route/engine/dml/ShadowDeleteStatementRoutingEngine.html#L52">52</a></td></tr>
@@ -10694,6 +10766,34 @@ public final class AgentReflectionUtils {
         return result;
     }
 }</pre></div></td></tr></table>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>File</th>
+<th>Project</th>
+<th>Line</th></tr>
+<tr class="b">
+<td>org/apache/shardingsphere/metadata/persist/service/config/database/datasource/NewDataSourceNodePersistService.java</td>
+<td>shardingsphere-metadata-core</td>
+<td><a href="./xref/org/apache/shardingsphere/metadata/persist/service/config/database/datasource/NewDataSourceNodePersistService.html#L91">91</a></td></tr>
+<tr class="a">
+<td>org/apache/shardingsphere/metadata/persist/service/config/database/datasource/NewDataSourceUnitPersistService.java</td>
+<td>shardingsphere-metadata-core</td>
+<td><a href="./xref/org/apache/shardingsphere/metadata/persist/service/config/database/datasource/NewDataSourceUnitPersistService.html#L91">91</a></td></tr>
+<tr class="b"><td colspan='3'>
+<div>
+<pre>String dataSourceValue = repository.getDirectly(NewDatabaseMetaDataNode.getDataSourceNodeWithVersion(databaseName, each, getDataSourceActiveVersion(databaseName, each)));
+            if (!Strings.isNullOrEmpty(dataSourceValue)) {
+                result.put(each, new YamlDataSourceConfigurationSwapper().swapToDataSourceProperties(YamlEngine.unmarshal(dataSourceValue, Map.class)));
+            }
+        }
+        return result;
+    }
+    
+    @SuppressWarnings(&quot;unchecked&quot;)
+    @Override
+    public Map&lt;String, DataSourceProperties&gt; load(final String databaseName, final String name) {
+        Map&lt;String, DataSourceProperties&gt; result = new LinkedHashMap&lt;&gt;();
+        String dataSourceValue = repository.getDirectly(NewDatabaseMetaDataNode.getDataSourceNodeWithVersion(databaseName, name, getDataSourceActiveVersion(databaseName, name)));</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -10808,6 +10908,35 @@ public final class AgentReflectionUtils {
         return null == context ? null : new IdentifierValue(context.getText()).getValue();
     }
 }</pre></div></td></tr></table>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>File</th>
+<th>Project</th>
+<th>Line</th></tr>
+<tr class="b">
+<td>org/apache/shardingsphere/metadata/persist/service/config/database/datasource/NewDataSourceNodePersistService.java</td>
+<td>shardingsphere-metadata-core</td>
+<td><a href="./xref/org/apache/shardingsphere/metadata/persist/service/config/database/datasource/NewDataSourceNodePersistService.html#L103">103</a></td></tr>
+<tr class="a">
+<td>org/apache/shardingsphere/metadata/persist/service/config/database/datasource/NewDataSourceUnitPersistService.java</td>
+<td>shardingsphere-metadata-core</td>
+<td><a href="./xref/org/apache/shardingsphere/metadata/persist/service/config/database/datasource/NewDataSourceUnitPersistService.html#L103">103</a></td></tr>
+<tr class="b"><td colspan='3'>
+<div>
+<pre>String dataSourceValue = repository.getDirectly(NewDatabaseMetaDataNode.getDataSourceNodeWithVersion(databaseName, name, getDataSourceActiveVersion(databaseName, name)));
+        if (!Strings.isNullOrEmpty(dataSourceValue)) {
+            result.put(name, new YamlDataSourceConfigurationSwapper().swapToDataSourceProperties(YamlEngine.unmarshal(dataSourceValue, Map.class)));
+        }
+        return result;
+    }
+    
+    @Override
+    public void append(final String databaseName, final Map&lt;String, DataSourceProperties&gt; toBeAppendedDataSourcePropsMap) {
+        persist(databaseName, toBeAppendedDataSourcePropsMap);
+    }
+    
+    private String getDataSourceActiveVersion(final String databaseName, final String dataSourceName) {
+        return repository.getDirectly(NewDatabaseMetaDataNode.getDataSourceNodeActiveVersionNode(databaseName, dataSourceName));</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
