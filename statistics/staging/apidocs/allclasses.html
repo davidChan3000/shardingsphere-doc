@@ -1061,8 +1061,8 @@
 <li><a href="org/apache/shardingsphere/timeservice/type/database/DatabaseTimestampService.html" title="class in org.apache.shardingsphere.timeservice.type.database">DatabaseTimestampService</a></li>
 <li><a href="org/apache/shardingsphere/infra/database/spi/DatabaseType.html" title="interface in org.apache.shardingsphere.infra.database.spi"><span class="interfaceName">DatabaseType</span></a></li>
 <li><a href="org/apache/shardingsphere/infra/database/core/type/checker/DatabaseTypeChecker.html" title="class in org.apache.shardingsphere.infra.database.core.type.checker">DatabaseTypeChecker</a></li>
-<li><a href="org/apache/shardingsphere/infra/spi/DatabaseTypedSPI.html" title="interface in org.apache.shardingsphere.infra.spi"><span class="interfaceName">DatabaseTypedSPI</span></a></li>
-<li><a href="org/apache/shardingsphere/infra/spi/DatabaseTypedSPILoader.html" title="class in org.apache.shardingsphere.infra.spi">DatabaseTypedSPILoader</a></li>
+<li><a href="org/apache/shardingsphere/infra/database/core/spi/DatabaseTypedSPI.html" title="interface in org.apache.shardingsphere.infra.database.core.spi"><span class="interfaceName">DatabaseTypedSPI</span></a></li>
+<li><a href="org/apache/shardingsphere/infra/database/core/spi/DatabaseTypedSPILoader.html" title="class in org.apache.shardingsphere.infra.database.core.spi">DatabaseTypedSPILoader</a></li>
 <li><a href="org/apache/shardingsphere/infra/database/DatabaseTypeEngine.html" title="class in org.apache.shardingsphere.infra.database">DatabaseTypeEngine</a></li>
 <li><a href="org/apache/shardingsphere/infra/database/core/type/DatabaseTypeFactory.html" title="class in org.apache.shardingsphere.infra.database.core.type">DatabaseTypeFactory</a></li>
 <li><a href="org/apache/shardingsphere/mode/event/DataChangedEvent.html" title="class in org.apache.shardingsphere.mode.event">DataChangedEvent</a></li>
@@ -1103,7 +1103,6 @@
 <li><a href="org/apache/shardingsphere/data/pipeline/cdc/protocol/response/DataRecordResult.RecordOrBuilder.html" title="interface in org.apache.shardingsphere.data.pipeline.cdc.protocol.response"><span class="interfaceName">DataRecordResult.RecordOrBuilder</span></a></li>
 <li><a href="org/apache/shardingsphere/data/pipeline/cdc/util/DataRecordResultConvertUtils.html" title="class in org.apache.shardingsphere.data.pipeline.cdc.util">DataRecordResultConvertUtils</a></li>
 <li><a href="org/apache/shardingsphere/data/pipeline/cdc/protocol/response/DataRecordResultOrBuilder.html" title="interface in org.apache.shardingsphere.data.pipeline.cdc.protocol.response"><span class="interfaceName">DataRecordResultOrBuilder</span></a></li>
-<li><a href="org/apache/shardingsphere/infra/database/core/type/DataSourceAggregatableDatabaseType.html" title="interface in org.apache.shardingsphere.infra.database.core.type"><span class="interfaceName">DataSourceAggregatableDatabaseType</span></a></li>
 <li><a href="org/apache/shardingsphere/test/it/sql/parser/internal/asserts/segment/distsql/DataSourceAssert.html" title="class in org.apache.shardingsphere.test.it.sql.parser.internal.asserts.segment.distsql">DataSourceAssert</a></li>
 <li><a href="org/apache/shardingsphere/data/pipeline/core/preparer/datasource/DataSourceCheckEngine.html" title="class in org.apache.shardingsphere.data.pipeline.core.preparer.datasource">DataSourceCheckEngine</a></li>
 <li><a href="org/apache/shardingsphere/infra/datasource/config/DataSourceConfiguration.html" title="class in org.apache.shardingsphere.infra.datasource.config">DataSourceConfiguration</a></li>
@@ -1448,6 +1447,7 @@
 <li><a href="org/apache/shardingsphere/test/it/sql/parser/internal/cases/parser/jaxb/statement/ddl/DropSynonymStatementTestCase.html" title="class in org.apache.shardingsphere.test.it.sql.parser.internal.cases.parser.jaxb.statement.ddl">DropSynonymStatementTestCase</a></li>
 <li><a href="org/apache/shardingsphere/mode/event/schema/table/DropTableEvent.html" title="class in org.apache.shardingsphere.mode.event.schema.table">DropTableEvent</a></li>
 <li><a href="org/apache/shardingsphere/sql/parser/sql/common/statement/ddl/DropTablespaceStatement.html" title="class in org.apache.shardingsphere.sql.parser.sql.common.statement.ddl">DropTablespaceStatement</a></li>
+<li><a href="org/apache/shardingsphere/test/it/sql/parser/internal/cases/parser/jaxb/statement/ddl/DropTableSpaceStatementTestCase.html" title="class in org.apache.shardingsphere.test.it.sql.parser.internal.cases.parser.jaxb.statement.ddl">DropTableSpaceStatementTestCase</a></li>
 <li><a href="org/apache/shardingsphere/sql/parser/sql/common/statement/ddl/DropTableStatement.html" title="class in org.apache.shardingsphere.sql.parser.sql.common.statement.ddl">DropTableStatement</a></li>
 <li><a href="org/apache/shardingsphere/test/it/sql/parser/internal/asserts/statement/ddl/impl/DropTableStatementAssert.html" title="class in org.apache.shardingsphere.test.it.sql.parser.internal.asserts.statement.ddl.impl">DropTableStatementAssert</a></li>
 <li><a href="org/apache/shardingsphere/infra/binder/statement/ddl/DropTableStatementContext.html" title="class in org.apache.shardingsphere.infra.binder.statement.ddl">DropTableStatementContext</a></li>
@@ -4841,6 +4841,7 @@
 <li><a href="org/apache/shardingsphere/sql/parser/sql/dialect/statement/oracle/ddl/OracleDropRollbackSegmentStatement.html" title="class in org.apache.shardingsphere.sql.parser.sql.dialect.statement.oracle.ddl">OracleDropRollbackSegmentStatement</a></li>
 <li><a href="org/apache/shardingsphere/sql/parser/sql/dialect/statement/oracle/ddl/OracleDropSequenceStatement.html" title="class in org.apache.shardingsphere.sql.parser.sql.dialect.statement.oracle.ddl">OracleDropSequenceStatement</a></li>
 <li><a href="org/apache/shardingsphere/sql/parser/sql/dialect/statement/oracle/ddl/OracleDropSynonymStatement.html" title="class in org.apache.shardingsphere.sql.parser.sql.dialect.statement.oracle.ddl">OracleDropSynonymStatement</a></li>
+<li><a href="org/apache/shardingsphere/sql/parser/sql/dialect/statement/oracle/ddl/OracleDropTableSpaceStatement.html" title="class in org.apache.shardingsphere.sql.parser.sql.dialect.statement.oracle.ddl">OracleDropTableSpaceStatement</a></li>
 <li><a href="org/apache/shardingsphere/sql/parser/sql/dialect/statement/oracle/ddl/OracleDropTableStatement.html" title="class in org.apache.shardingsphere.sql.parser.sql.dialect.statement.oracle.ddl">OracleDropTableStatement</a></li>
 <li><a href="org/apache/shardingsphere/sql/parser/sql/dialect/statement/oracle/ddl/OracleDropTriggerStatement.html" title="class in org.apache.shardingsphere.sql.parser.sql.dialect.statement.oracle.ddl">OracleDropTriggerStatement</a></li>
 <li><a href="org/apache/shardingsphere/sql/parser/sql/dialect/statement/oracle/ddl/OracleDropTypeStatement.html" title="class in org.apache.shardingsphere.sql.parser.sql.dialect.statement.oracle.ddl">OracleDropTypeStatement</a></li>
@@ -5300,6 +5301,7 @@
 <li><a href="org/apache/shardingsphere/sql/parser/autogen/OracleStatementParser.DropSynonymContext.html" title="class in org.apache.shardingsphere.sql.parser.autogen">OracleStatementParser.DropSynonymContext</a></li>
 <li><a href="org/apache/shardingsphere/sql/parser/autogen/OracleStatementParser.DropTableContext.html" title="class in org.apache.shardingsphere.sql.parser.autogen">OracleStatementParser.DropTableContext</a></li>
 <li><a href="org/apache/shardingsphere/sql/parser/autogen/OracleStatementParser.DropTablePartitionContext.html" title="class in org.apache.shardingsphere.sql.parser.autogen">OracleStatementParser.DropTablePartitionContext</a></li>
+<li><a href="org/apache/shardingsphere/sql/parser/autogen/OracleStatementParser.DropTableSpaceContext.html" title="class in org.apache.shardingsphere.sql.parser.autogen">OracleStatementParser.DropTableSpaceContext</a></li>
 <li><a href="org/apache/shardingsphere/sql/parser/autogen/OracleStatementParser.DropTriggerContext.html" title="class in org.apache.shardingsphere.sql.parser.autogen">OracleStatementParser.DropTriggerContext</a></li>
 <li><a href="org/apache/shardingsphere/sql/parser/autogen/OracleStatementParser.DropTypeContext.html" title="class in org.apache.shardingsphere.sql.parser.autogen">OracleStatementParser.DropTypeContext</a></li>
 <li><a href="org/apache/shardingsphere/sql/parser/autogen/OracleStatementParser.DropUserContext.html" title="class in org.apache.shardingsphere.sql.parser.autogen">OracleStatementParser.DropUserContext</a></li>
