@@ -1,80 +1,21 @@
-commit 4a7160719288b0587e577f2ecd00fe0710709e68
-Author: 孙念君 Nianjun Sun <sunnianjun@apache.org>
-Date:   Tue Jul 18 20:08:28 2023 +0800
+commit 825937d1cfddbb1dfd2111232d5593bdfb6f2d23
+Author: Josh Innis <JoshInnis@gmail.com>
+Date:   Tue Jul 18 21:32:02 2023 -0500
 
-    Fix : fix the mvn usage in release document (#27274)
+    Altered English Rules for Indentifier (#27283)
+    
+    The English manual had Capitalized A-Z twice. I changed one to lowercase values a-z as I assume that was the intent.
 
-diff --git a/docs/community/content/involved/release/shardingsphere.cn.md b/docs/community/content/involved/release/shardingsphere.cn.md
-index 951ae0a7ab9..404ea6dad51 100644
---- a/docs/community/content/involved/release/shardingsphere.cn.md
-+++ b/docs/community/content/involved/release/shardingsphere.cn.md
-@@ -229,7 +229,7 @@ export GPG_TTY=$(tty)
- ```
+diff --git a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/_index.en.md b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/_index.en.md
+index 02fc361d99a..84d9f0f6f7e 100644
+--- a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/_index.en.md
++++ b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/_index.en.md
+@@ -22,7 +22,7 @@ In DistSQL statement, except for keywords, the input format of other elements sh
+ - rule name
+ - algorithm name
  
- ```shell
--mvn release:prepare -Prelease -Darguments="-DskipTests -Dspotless.apply.skip=true" -DautoVersionSubmodules=true -DdryRun=true -Dusername=${Github用户名}
-+./mvnw release:prepare -Prelease -Darguments="-DskipTests -Dspotless.apply.skip=true" -DautoVersionSubmodules=true -DdryRun=true -Dusername=${Github用户名}
- ```
+-2. The allowed characters in the identifier are: [`A-Z, A-Z, 0-9, _`] (letters, numbers, underscores) and should start with a letter.
++2. The allowed characters in the identifier are: [`a-z, A-Z, 0-9, _`] (letters, numbers, underscores) and should start with a letter.
+ 3. When keywords or special characters appear in the identifier, use the backticks (`).
  
- -Prelease：选择 release 的 profile，这个 profile 会打包所有源码、jar 文件以及 ShardingSphere-Proxy 的可执行二进制包。
-@@ -243,11 +243,11 @@ mvn release:prepare -Prelease -Darguments="-DskipTests -Dspotless.apply.skip=tru
- 首先清理发布预校验本地信息。
- 
- ```shell
--mvn release:clean
-+./mvnw release:clean
- ```
- 
- ```shell
--mvn release:prepare -Prelease -Darguments="-DskipTests -Dspotless.apply.skip=true" -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github 用户名}
-+./mvnw release:prepare -Prelease -Darguments="-DskipTests -Dspotless.apply.skip=true" -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github 用户名}
- ```
- 
- 和上一步演练的命令基本相同，去掉了 -DdryRun=true 参数。
-@@ -266,7 +266,7 @@ git push origin ${RELEASE.VERSION}
- 使用稳定的网络环境，本过程可能持续`1`个小时以上。
- 
- ```shell
--mvn release:perform -Prelease -Darguments="-DskipTests -Dspotless.apply.skip=true" -DautoVersionSubmodules=true -DlocalCheckout=true -Dusername=${Github 用户名}
-+./mvnw release:perform -Prelease -Darguments="-DskipTests -Dspotless.apply.skip=true" -DautoVersionSubmodules=true -DlocalCheckout=true -Dusername=${Github 用户名}
- ```
- 
- -DlocalCheckout=true：从本地 checkout 代替从远程仓库拉取代码。
-diff --git a/docs/community/content/involved/release/shardingsphere.en.md b/docs/community/content/involved/release/shardingsphere.en.md
-index e87759046b6..c78bdaf33a7 100644
---- a/docs/community/content/involved/release/shardingsphere.en.md
-+++ b/docs/community/content/involved/release/shardingsphere.en.md
-@@ -231,7 +231,7 @@ export GPG_TTY=$(tty)
- ```
- 
- ```shell
--mvn release:prepare -Prelease -Darguments="-DskipTests -Dspotless.apply.skip=true" -DautoVersionSubmodules=true -DdryRun=true -Dusername=${Github username}
-+./mvnw release:prepare -Prelease -Darguments="-DskipTests -Dspotless.apply.skip=true" -DautoVersionSubmodules=true -DdryRun=true -Dusername=${Github username}
- ```
- 
- -Prelease: choose release profile, which will pack all the source codes, jar files and executable binary packages of ShardingSphere-Proxy.
-@@ -245,13 +245,13 @@ mvn release:prepare -Prelease -Darguments="-DskipTests -Dspotless.apply.skip=tru
- First, clean local pre-release check information.
- 
- ```shell
--mvn release:clean
-+./mvnw release:clean
- ```
- 
- Then, prepare to execute the release.
- 
- ```shell
--mvn release:prepare -Prelease -Darguments="-DskipTests -Dspotless.apply.skip=true" -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github username}
-+./mvnw release:prepare -Prelease -Darguments="-DskipTests -Dspotless.apply.skip=true" -DautoVersionSubmodules=true -DpushChanges=false -Dusername=${Github username}
- ```
- 
- It is basically the same as the previous rehearsal command, but deleting -DdryRun=true parameter.
-@@ -267,7 +267,7 @@ git push origin ${RELEASE.VERSION}
- ### 4. Deploy the Release
- 
- ```shell
--mvn release:perform -Prelease -Darguments="-DskipTests -Dspotless.apply.skip=true" -DautoVersionSubmodules=true -DlocalCheckout=true -Dusername=${Github username}
-+./mvnw release:perform -Prelease -Darguments="-DskipTests -Dspotless.apply.skip=true" -DautoVersionSubmodules=true -DlocalCheckout=true -Dusername=${Github username}
- ```
- 
- -DlocalCheckout=true: checkout code from local repository instead of remote repository.
+ ### Literal
