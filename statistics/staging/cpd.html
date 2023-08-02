@@ -6683,42 +6683,6 @@ public final class AgentReflectionUtils {
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td>org/apache/shardingsphere/infra/database/mysql/metadata/data/loader/MySQLMetaDataLoader.java</td>
-<td>shardingsphere-infra-database-mysql</td>
-<td><a href="./xref/org/apache/shardingsphere/infra/database/mysql/metadata/data/loader/MySQLMetaDataLoader.html#L147">147</a></td></tr>
-<tr class="a">
-<td>org/apache/shardingsphere/infra/database/sqlserver/metadata/data/loader/SQLServerMetaDataLoader.java</td>
-<td>shardingsphere-infra-database-sqlserver</td>
-<td><a href="./xref/org/apache/shardingsphere/infra/database/sqlserver/metadata/data/loader/SQLServerMetaDataLoader.html#L127">127</a></td></tr>
-<tr class="b"><td colspan='3'>
-<div>
-<pre>try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    String indexName = resultSet.getString(&quot;INDEX_NAME&quot;);
-                    String tableName = resultSet.getString(&quot;TABLE_NAME&quot;);
-                    if (!result.containsKey(tableName)) {
-                        result.put(tableName, new LinkedList&lt;&gt;());
-                    }
-                    result.get(tableName).add(new IndexMetaData(indexName));
-                }
-            }
-        }
-        return result;
-    }
-    
-    private String getIndexMetaDataSQL(final Collection&lt;String&gt; tableNames) {
-        return String.format(INDEX_META_DATA_SQL, tableNames.stream().map(each -&gt; String.format(&quot;'%s'&quot;, each)).collect(Collectors.joining(&quot;,&quot;)));
-    }
-    
-    @Override
-    public String getDatabaseType() {
-        return &quot;MySQL&quot;;</pre></div></td></tr></table>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>File</th>
-<th>Project</th>
-<th>Line</th></tr>
-<tr class="b">
 <td>org/apache/shardingsphere/metadata/factory/InternalMetaDataFactory.java</td>
 <td>shardingsphere-metadata-core</td>
 <td><a href="./xref/org/apache/shardingsphere/metadata/factory/InternalMetaDataFactory.html#L71">71</a></td></tr>
@@ -7275,39 +7239,6 @@ public final class AgentReflectionUtils {
     }
     
     private InExpression createInSegment(final PredicateContext ctx) {</pre></div></td></tr></table>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>File</th>
-<th>Project</th>
-<th>Line</th></tr>
-<tr class="b">
-<td>org/apache/shardingsphere/infra/database/mysql/metadata/data/loader/MySQLMetaDataLoader.java</td>
-<td>shardingsphere-infra-database-mysql</td>
-<td><a href="./xref/org/apache/shardingsphere/infra/database/mysql/metadata/data/loader/MySQLMetaDataLoader.html#L146">146</a></td></tr>
-<tr class="a">
-<td>org/apache/shardingsphere/infra/database/oracle/metadata/data/loader/OracleMetaDataLoader.java</td>
-<td>shardingsphere-infra-database-oracle</td>
-<td><a href="./xref/org/apache/shardingsphere/infra/database/oracle/metadata/data/loader/OracleMetaDataLoader.html#L158">158</a></td></tr>
-<tr class="b"><td colspan='3'>
-<div>
-<pre>preparedStatement.setString(1, databaseName);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    String indexName = resultSet.getString(&quot;INDEX_NAME&quot;);
-                    String tableName = resultSet.getString(&quot;TABLE_NAME&quot;);
-                    if (!result.containsKey(tableName)) {
-                        result.put(tableName, new LinkedList&lt;&gt;());
-                    }
-                    result.get(tableName).add(new IndexMetaData(indexName));
-                }
-            }
-        }
-        return result;
-    }
-    
-    private String getIndexMetaDataSQL(final Collection&lt;String&gt; tableNames) {
-        return String.format(INDEX_META_DATA_SQL, tableNames.stream().map(each -&gt; String.format(&quot;'%s'&quot;, each)).collect(Collectors.joining(&quot;,&quot;)));
-    }</pre></div></td></tr></table>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>File</th>
@@ -7972,14 +7903,10 @@ public final class AgentReflectionUtils {
 <td>shardingsphere-infra-database-h2</td>
 <td><a href="./xref/org/apache/shardingsphere/infra/database/h2/metadata/data/loader/H2MetaDataLoader.html#L123">123</a></td></tr>
 <tr class="a">
-<td>org/apache/shardingsphere/infra/database/mysql/metadata/data/loader/MySQLMetaDataLoader.java</td>
-<td>shardingsphere-infra-database-mysql</td>
-<td><a href="./xref/org/apache/shardingsphere/infra/database/mysql/metadata/data/loader/MySQLMetaDataLoader.html#L146">146</a></td></tr>
-<tr class="b">
 <td>org/apache/shardingsphere/infra/database/oracle/metadata/data/loader/OracleMetaDataLoader.java</td>
 <td>shardingsphere-infra-database-oracle</td>
 <td><a href="./xref/org/apache/shardingsphere/infra/database/oracle/metadata/data/loader/OracleMetaDataLoader.html#L158">158</a></td></tr>
-<tr class="a"><td colspan='3'>
+<tr class="b"><td colspan='3'>
 <div>
 <pre>preparedStatement.setString(2, &quot;PUBLIC&quot;);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
