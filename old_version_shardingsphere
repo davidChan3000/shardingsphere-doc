@@ -1,104 +1,112 @@
-commit 3b220d7e8bf8f31f24c16a7bfa176bbe45e43fa0
+commit 78213eaf28f372626a4fc64b1f6f28fd20427b0e
 Author: Zhengqiang Duan <duanzhengqiang@apache.org>
-Date:   Tue Sep 26 08:39:40 2023 +0800
+Date:   Tue Sep 26 10:33:45 2023 +0800
 
-    Remove like and rc4 in ShardingSphere encrypt and move to ShardingSphere plugin repository (#28580)
+    Remove apollo in ShardingSphere driver and move to ShardingSphere plugin repository (#28585)
     
-    * Remove like and rc4 in ShardingSphere encrypt and move to ShardingSphere plugin repository
+    * Remove apollo in ShardingSphere driver and move to ShardingSphere plugin repository
     
-    * fix unit test
+    * Remove dbcp in pom
 
-diff --git a/docs/document/content/dev-manual/encrypt.cn.md b/docs/document/content/dev-manual/encrypt.cn.md
-index 1fd403d0f80..9ffedbd2cfc 100644
---- a/docs/document/content/dev-manual/encrypt.cn.md
-+++ b/docs/document/content/dev-manual/encrypt.cn.md
-@@ -20,6 +20,4 @@ chapter = true
- | *配置标识*           | *详细说明*           | *全限定类名*                                                                                                                                                                                                                                                            |
- |------------------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
- | AES              | 基于 AES 的数据加密算法   | [`org.apache.shardingsphere.encrypt.algorithm.encrypt.AESEncryptAlgorithm`](https://github.com/apache/shardingsphere/blob/master/features/encrypt/core/src/main/java/org/apache/shardingsphere/encrypt/algorithm/standard/AESEncryptAlgorithm.java)                |
--| RC4              | 基于 RC4 的数据加密算法   | [`org.apache.shardingsphere.encrypt.algorithm.encrypt.RC4EncryptAlgorithm`](https://github.com/apache/shardingsphere/blob/master/features/encrypt/core/src/main/java/org/apache/shardingsphere/encrypt/algorithm/standard/RC4EncryptAlgorithm.java)                |
- | MD5              | 基于 MD5 的辅助查询加密算法 | [`org.apache.shardingsphere.encrypt.algorithm.encrypt.MD5EncryptAlgorithm`](https://github.com/apache/shardingsphere/blob/master/features/encrypt/core/src/main/java/org/apache/shardingsphere/encrypt/algorithm/assisted/MD5AssistedEncryptAlgorithm.java)        |
--| CHAR_DIGEST_LIKE | 用于模糊查询的数据加密算法    | [`org.apache.shardingsphere.encrypt.algorithm.like.CharDigestLikeEncryptAlgorithm`](https://github.com/apache/shardingsphere/blob/master/features/encrypt/core/src/main/java/org/apache/shardingsphere/encrypt/algorithm/like/CharDigestLikeEncryptAlgorithm.java) |
-diff --git a/docs/document/content/dev-manual/encrypt.en.md b/docs/document/content/dev-manual/encrypt.en.md
-index a81d2acd3da..caeada00380 100644
---- a/docs/document/content/dev-manual/encrypt.en.md
-+++ b/docs/document/content/dev-manual/encrypt.en.md
-@@ -20,6 +20,4 @@ Data encrypt algorithm definition
- | *Configuration Type* | *Description*                               | *Fully-qualified class name*                                                                                                                                                                                                                                       |
- |----------------------|---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
- | AES                  | AES data encrypt algorithm                  | [`org.apache.shardingsphere.encrypt.algorithm.encrypt.AESEncryptAlgorithm`](https://github.com/apache/shardingsphere/blob/master/features/encrypt/core/src/main/java/org/apache/shardingsphere/encrypt/algorithm/standard/AESEncryptAlgorithm.java)                |
--| RC4                  | RC4 data encrypt algorithm                  | [`org.apache.shardingsphere.encrypt.algorithm.encrypt.RC4EncryptAlgorithm`](https://github.com/apache/shardingsphere/blob/master/features/encrypt/core/src/main/java/org/apache/shardingsphere/encrypt/algorithm/standard/RC4EncryptAlgorithm.java)                |
- | MD5                  | MD5 assisted query encrypt algorithm        | [`org.apache.shardingsphere.encrypt.algorithm.encrypt.MD5EncryptAlgorithm`](https://github.com/apache/shardingsphere/blob/master/features/encrypt/core/src/main/java/org/apache/shardingsphere/encrypt/algorithm/assisted/MD5AssistedEncryptAlgorithm.java)        |
--| CHAR_DIGEST_LIKE     | Data encryption algorithms for like queries | [`org.apache.shardingsphere.encrypt.algorithm.like.CharDigestLikeEncryptAlgorithm`](https://github.com/apache/shardingsphere/blob/master/features/encrypt/core/src/main/java/org/apache/shardingsphere/encrypt/algorithm/like/CharDigestLikeEncryptAlgorithm.java) |
-diff --git a/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.cn.md b/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.cn.md
-index 62931407f69..68b5f19d7df 100644
---- a/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.cn.md
-+++ b/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.cn.md
-@@ -22,31 +22,6 @@ weight = 5
- | aes-key-value         | String | AES 使用的 KEY                  |
- | digest-algorithm-name | String | AES KEY 的摘要算法 (可选，默认值：SHA-1) |
+diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/_index.cn.md b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/_index.cn.md
+index 71d8a5cc571..3f3b58f7a9a 100644
+--- a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/_index.cn.md
++++ b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/_index.cn.md
+@@ -21,7 +21,6 @@ ShardingSphere-JDBC 提供了 JDBC 驱动，可以仅通过配置变更即可使
+ - 配置文件加载规则：
+   - `absolutepath:` 前缀表示从绝对路径中加载配置文件
+   - `classpath:` 前缀表示从类路径中加载配置文件
+-  - `apollo:` 前缀表示从 apollo 中加载配置文件
  
--#### RC4 加密算法
--
--类型：RC4
--
--可配置属性：
--
--| *名称*          | *数据类型* | *说明*        |
--|---------------|--------|-------------|
--| rc4-key-value | String | RC4 使用的 KEY |
--
--### 模糊加密算法
--
--#### 单字符摘要模糊加密算法
--
--类型：CHAR_DIGEST_LIKE
--
--可配置属性：
--
--| *名称*  | *数据类型* | *说明*               |
--|-------|--------|--------------------|
--| delta | int    | 字符Unicode码偏移量（十进制） |
--| mask  | int    | 字符加密掩码（十进制）        |
--| start | int    | 密文Unicode初始码（十进制）  |
--| dict  | String | 常见字                |
--
- ### 辅助查询加密算法
+ ## 操作步骤
  
- #### MD5 辅助查询加密算法
-diff --git a/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.en.md b/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.en.md
-index 58cad71e6f7..ac09a77ccf4 100644
---- a/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.en.md
-+++ b/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.en.md
-@@ -22,31 +22,6 @@ Attributes:
- | aes-key-value         | String     | AES KEY                                             |
- | digest-algorithm-name | String     | AES KEY DIGEST ALGORITHM (optional, default: SHA-1) |
+@@ -35,16 +34,6 @@ ShardingSphere-JDBC 提供了 JDBC 驱动，可以仅通过配置变更即可使
+ </dependency>
+ ```
  
--#### RC4 Encrypt Algorithm
+-如果使用 apollo 配置方式，还需要引入 `apollo-client` 依赖：
 -
--Type: RC4
+-```xml
+-<dependency>
+-    <groupId>com.ctrip.framework.apollo</groupId>
+-    <artifactId>apollo-client</artifactId>
+-    <version>${apollo-client.version}</version>
+-</dependency>
+-```
 -
--Attributes:
--
--| *Name*        | *DataType* | *Description* |
--|---------------|------------|---------------|
--| rc4-key-value | String     | RC4 KEY       |
--
--### Like Encrypt Algorithm
--
--#### CharDigestLike Encrypt Algorithm
--
--Type：CHAR_DIGEST_LIKE
--
--Attributes：
--
--| *Name* | *DataType* | *Description*                                   |
--|--------|------------|-------------------------------------------------|
--| delta  | int        | Character Unicode offset（decimal number）        |
--| mask   | int        | Character encryption mask（decimal number）       |
--| start  | int        | Ciphertext Unicode initial code（decimal number） |
--| dict   | String     | Common words                                    |
--
- ### Assisted Encrypt Algorithm
+ 2. 使用驱动
  
- #### MD5 Assisted Encrypt Algorithm
+ * 使用原生驱动：
+@@ -103,8 +92,3 @@ jdbc:shardingsphere:classpath:config.yaml
+ ```
+ jdbc:shardingsphere:absolutepath:/path/to/config.yaml
+ ```
+-
+-加载 apollo 指定 namespace 中的 yaml 配置文件的 JDBC URL：
+-```
+-jdbc:shardingsphere:apollo:TEST.test_namespace
+-```
+diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/_index.en.md b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/_index.en.md
+index 1cf11a2dc5c..cc72a35f61d 100644
+--- a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/_index.en.md
++++ b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/_index.en.md
+@@ -21,7 +21,6 @@ ShardingSphere-JDBC provides a JDBC Driver, which can be used only through confi
+ - Configuration file loading rule:
+   - `absolutepath:` prefix means to load the configuration file from the absolute path
+   - `classpath:` prefix indicates that the configuration file is loaded from the classpath
+-  - `apollo:` prefix means to load the configuration file from apollo
+ 
+ ## Procedure
+ 
+@@ -35,16 +34,6 @@ ShardingSphere-JDBC provides a JDBC Driver, which can be used only through confi
+ </dependency>
+ ```
+ 
+-If you use the apollo configuration method, you also need to introduce the `apollo-client` dependency:
+-
+-```xml
+-<dependency>
+-    <groupId>com.ctrip.framework.apollo</groupId>
+-    <artifactId>apollo-client</artifactId>
+-    <version>${apollo-client.version}</version>
+-</dependency>
+-```
+-
+ 2. Use drive
+ 
+ * Use native drivers:
+@@ -103,8 +92,3 @@ Load JDBC URL of config.yaml profile in absolute path
+ ```
+ jdbc:shardingsphere:absolutepath:/path/to/config.yaml
+ ```
+-
+-Load JDBC URL of the yaml configuration file in the specified namespace of apollo:
+-```
+-jdbc:shardingsphere:apollo:TEST.test_namespace
+-```
+diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/spring-boot/_index.cn.md b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/spring-boot/_index.cn.md
+index d3e5fd7e12c..d88b9e8fc9a 100644
+--- a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/spring-boot/_index.cn.md
++++ b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/spring-boot/_index.cn.md
+@@ -29,7 +29,7 @@ spring.datasource.driver-class-name=org.apache.shardingsphere.driver.ShardingSph
+ spring.datasource.url=jdbc:shardingsphere:classpath:xxx.yaml
+ ```
+ 
+-`spring.datasource.url` 中的 YAML 配置文件当前支持通过三种方式获取，绝对路径 `absolutepath:`、Apollo 配置中心 `apollo:` 以及 CLASSPATH `classpath:`，具体可参考 `org.apache.shardingsphere.driver.jdbc.core.driver.ShardingSphereURLProvider` 的实现。
++`spring.datasource.url` 中的 YAML 配置文件当前支持通过两种方式获取，绝对路径 `absolutepath:` 以及 CLASSPATH `classpath:`，具体可参考 `org.apache.shardingsphere.driver.jdbc.core.driver.ShardingSphereURLProvider` 的实现。
+ 
+ ### 使用数据源
+ 
+diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/spring-boot/_index.en.md b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/spring-boot/_index.en.md
+index 30c79616678..1e57790429a 100644
+--- a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/spring-boot/_index.en.md
++++ b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/jdbc-driver/spring-boot/_index.en.md
+@@ -29,7 +29,7 @@ spring.datasource.driver-class-name=org.apache.shardingsphere.driver.ShardingSph
+ spring.datasource.url=jdbc:shardingsphere:classpath:xxx.yaml
+ ```
+ 
+-The YAML configuration file in 'spring.datasource.url' currently support in three ways, the absolute path 'absolutepath:', Apollo configuration center 'apollo:', and CLASSPATH 'classpath:', which can be referred to `org.apache.shardingsphere.driver.jdbc.core.driver.ShardingSphereURLProvider`'s implementation for details.
++The YAML configuration file in 'spring.datasource.url' currently support in two ways, the absolute path 'absolutepath:' and CLASSPATH 'classpath:', which can be referred to `org.apache.shardingsphere.driver.jdbc.core.driver.ShardingSphereURLProvider`'s implementation for details.
+ 
+ ### Use Data Source
+ 
