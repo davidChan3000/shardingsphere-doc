@@ -1,66 +1,102 @@
-commit caab1ea5be934b854b476ddec5ca6ed867d6e3e3
-Author: zjx990 <66360103+zjx990@users.noreply.github.com>
-Date:   Thu Sep 14 00:34:55 2023 +0800
+commit cbb59f5d475dbf24c11f7c6a7dfc04b9b883c868
+Author: zhangliang <zhangliang@apache.org>
+Date:   Sun Oct 15 15:11:51 2023 +0800
 
-    Update FAQ document about service fake death (#2262)
-    
-    * Update FAQ document about service fake death
-    
-    ---------
-    
-    Co-authored-by: zhaojiaxu3 <zhaojiaxu3@jd.com>
+    Refactor elasticjob-engine module‘s package name
 
 diff --git a/docs/content/faq/_index.cn.md b/docs/content/faq/_index.cn.md
-index 8d5489261..18cd5dbe0 100644
+index 66e832606..3b8ee6946 100644
 --- a/docs/content/faq/_index.cn.md
 +++ b/docs/content/faq/_index.cn.md
-@@ -129,3 +129,22 @@ Mesos 相关请参考 [Apache Mesos](https://mesos.apache.org/)。
- 1. 指定网卡 eno1：`-Delasticjob.preferred.network.interface=eno1`。
- 1. 指定IP地址 192.168.0.100：`-Delasticjob.preferred.network.ip=192.168.0.100`。
- 1. 泛指IP地址(正则表达式) 192.168.*：`-Delasticjob.preferred.network.ip=192.168.*`。
-+
-+## 15. zk授权升级,在滚动部署过程中出现实例假死,回退到历史版本也依然存在假死。
-+
-+回答:
-+
-+在滚动部署过程中,会触发竞争选举leader,有密码的实例会给zk目录加密导致无密码的实例不可访问,最终导致整体选举阻塞。
-+
-+例如:
-+
-+通过日志可以发现会抛出-102异常:
-+
-+```bash
-+xxxx-07-27 22:33:55.224 [DEBUG] [localhost-startStop-1-EventThread] [] [] [] - o.a.c.f.r.c.TreeCache : processResult: CuratorEventImpl{type=GET_DATA, resultCode=-102, path='/xxx/leader/election/latch/_c_bccccdcc-1134-4e0a-bb52-59a13836434a-latch-0000000047', name='null', children=null, context=null, stat=null, data=null, watchedEvent=null, aclList=null}
-+```
-+
-+解决方案:
-+
-+1.如果您在升级的过程中出现回退历史版本也依然假死的问题,建议删除zk上所有作业目录,之后再重启历史版本。
-+2.计算出合理的作业执行间隙,比如晚上21:00-21:30作业不会触发,在此期间先将实例全部停止,然后将带密码的版本全部部署上线。
-\ No newline at end of file
+@@ -78,7 +78,7 @@ ElasticJob 已将 IP 地址等敏感信息过滤，导出的信息可在公网
+ ElasticJob 执行任务会获取本机IP，首次可能存在获取IP较慢的情况。尝试设置 `-Djava.net.preferIPv4Stack=true`.
+ 
+ 
+-## 10. Windows环境下，运行ShardingSphere-ElasticJob-UI，找不到或无法加载主类 org.apache.shardingsphere.elasticjob.engine.ui.Bootstrap，如何解决？
++## 10. Windows环境下，运行ShardingSphere-ElasticJob-UI，找不到或无法加载主类 org.apache.shardingsphere.elasticjob.kernel.ui.Bootstrap，如何解决？
+ 
+ 回答：
+ 
 diff --git a/docs/content/faq/_index.en.md b/docs/content/faq/_index.en.md
-index 20d32efe9..976d2b886 100644
+index daebc029b..cfd93ec08 100644
 --- a/docs/content/faq/_index.en.md
 +++ b/docs/content/faq/_index.en.md
-@@ -128,3 +128,20 @@ For example
- 1. specify the interface eno1: `-Delasticjob.preferred.network.interface=eno1`.
- 1. specify network addresses, 192.168.0.100: `-Delasticjob.preferred.network.ip=192.168.0.100`.
- 1. specify network addresses for regular expressions, 192.168.*: `-Delasticjob.preferred.network.ip=192.168.*`.
-+
-+## 15. During the zk authorization upgrade process, there was a false death of the instance during the rolling deployment process, and even if the historical version was rolled back, there was still false death.
-+
-+Answer:
-+
-+During the rolling deployment process, competitive election leaders will be triggered, and instances with passwords will encrypt the zk directory, making instances without passwords inaccessible, ultimately leading to overall election blocking.
-+
-+For example
-+
-+Through the logs, it can be found that an -102 exception will be thrown:
-+
-+```bash
-+xxxx-07-27 22:33:55.224 [DEBUG] [localhost-startStop-1-EventThread] [] [] [] - o.a.c.f.r.c.TreeCache : processResult: CuratorEventImpl{type=GET_DATA, resultCode=-102, path='/xxx/leader/election/latch/_c_bccccdcc-1134-4e0a-bb52-59a13836434a-latch-0000000047', name='null', children=null, context=null, stat=null, data=null, watchedEvent=null, aclList=null}
-+```
-+
-+1.If you encounter the issue of returning to the historical version and still pretending to be dead during the upgrade process, it is recommended to delete all job directories on zk and restart the historical version afterwards.
-+2.Calculate a reasonable job execution gap, such as when the job will not trigger from 21:00 to 21:30 in the evening. During this period, first stop all instances, and then deploy all versions with passwords online.
-\ No newline at end of file
+@@ -79,7 +79,7 @@ Answer:
+ ElasticJob will obtain the local IP when performing task scheduling, and it may be slow to obtain the IP for the first time. Try to set `-Djava.net.preferIPv4Stack=true`.
+ 
+ 
+-## 10. In Windows env, run ShardingSphere-ElasticJob-UI, could not find or load main class org.apache.shardingsphere.elasticjob.engine.ui.Bootstrap. Why?
++## 10. In Windows env, run ShardingSphere-ElasticJob-UI, could not find or load main class org.apache.shardingsphere.elasticjob.kernel.ui.Bootstrap. Why?
+ 
+ Answer:
+ 
+diff --git a/docs/content/user-manual/configuration/spring-boot-starter.cn.md b/docs/content/user-manual/configuration/spring-boot-starter.cn.md
+index c0de545e2..332702eac 100644
+--- a/docs/content/user-manual/configuration/spring-boot-starter.cn.md
++++ b/docs/content/user-manual/configuration/spring-boot-starter.cn.md
+@@ -89,7 +89,7 @@ elasticjob.reg-center.server-lists=localhost:6181
+ elasticjob:
+   jobs:
+     simpleJob:
+-      elasticJobClass: org.apache.shardingsphere.elasticjob.engine.example.job.SpringBootSimpleJob
++      elasticJobClass: org.apache.shardingsphere.elasticjob.kernel.example.job.SpringBootSimpleJob
+       cron: 0/5 * * * * ?
+       timeZone: GMT+08:00
+       shardingTotalCount: 3
+@@ -110,7 +110,7 @@ elasticjob:
+ 
+ **Properties**
+ ```
+-elasticjob.jobs.simpleJob.elastic-job-class=org.apache.shardingsphere.elasticjob.engine.example.job.SpringBootSimpleJob
++elasticjob.jobs.simpleJob.elastic-job-class=org.apache.shardingsphere.elasticjob.kernel.example.job.SpringBootSimpleJob
+ elasticjob.jobs.simpleJob.cron=0/5 * * * * ?
+ elasticjob.jobs.simpleJob.timeZone=GMT+08:00
+ elasticjob.jobs.simpleJob.sharding-total-count=3
+diff --git a/docs/content/user-manual/configuration/spring-boot-starter.en.md b/docs/content/user-manual/configuration/spring-boot-starter.en.md
+index b294ca11c..a50f584d5 100644
+--- a/docs/content/user-manual/configuration/spring-boot-starter.en.md
++++ b/docs/content/user-manual/configuration/spring-boot-starter.en.md
+@@ -90,7 +90,7 @@ Reference:
+ elasticjob:
+   jobs:
+     simpleJob:
+-      elasticJobClass: org.apache.shardingsphere.elasticjob.engine.example.job.SpringBootSimpleJob
++      elasticJobClass: org.apache.shardingsphere.elasticjob.kernel.example.job.SpringBootSimpleJob
+       cron: 0/5 * * * * ?
+       timeZone: GMT+08:00
+       shardingTotalCount: 3
+@@ -111,7 +111,7 @@ elasticjob:
+ 
+ **Properties**
+ ```
+-elasticjob.jobs.simpleJob.elastic-job-class=org.apache.shardingsphere.elasticjob.engine.example.job.SpringBootSimpleJob
++elasticjob.jobs.simpleJob.elastic-job-class=org.apache.shardingsphere.elasticjob.kernel.example.job.SpringBootSimpleJob
+ elasticjob.jobs.simpleJob.cron=0/5 * * * * ?
+ elasticjob.jobs.simpleJob.timeZone=GMT+08:00
+ elasticjob.jobs.simpleJob.sharding-total-count=3
+diff --git a/docs/content/user-manual/usage/job-api/spring-namespace.cn.md b/docs/content/user-manual/usage/job-api/spring-namespace.cn.md
+index 085df8726..485eb6c8b 100644
+--- a/docs/content/user-manual/usage/job-api/spring-namespace.cn.md
++++ b/docs/content/user-manual/usage/job-api/spring-namespace.cn.md
+@@ -52,7 +52,7 @@ ElasticJob 提供自定义的 Spring 命名空间，可以与 Spring 容器配
+ 
+ ```xml
+ 
+-<bean id="oneOffJob" class="org.apache.shardingsphere.elasticjob.engine.example.job.simple.SpringSimpleJob"/>
++<bean id="oneOffJob" class="org.apache.shardingsphere.elasticjob.kernel.example.job.simple.SpringSimpleJob"/>
+ <elasticjob:job id="oneOffJobBean" job-ref="oneOffJob" ...  />
+ ```
+ ```java
+diff --git a/docs/content/user-manual/usage/job-api/spring-namespace.en.md b/docs/content/user-manual/usage/job-api/spring-namespace.en.md
+index 0f4cb7a37..f9fd35ccc 100644
+--- a/docs/content/user-manual/usage/job-api/spring-namespace.en.md
++++ b/docs/content/user-manual/usage/job-api/spring-namespace.en.md
+@@ -53,7 +53,7 @@ Trigger the job by invoking `execute()` method manually.
+ 
+ ```xml
+ 
+-<bean id="oneOffJob" class="org.apache.shardingsphere.elasticjob.engine.example.job.simple.SpringSimpleJob"/>
++<bean id="oneOffJob" class="org.apache.shardingsphere.elasticjob.kernel.example.job.simple.SpringSimpleJob"/>
+ <elasticjob:job id="oneOffJobBean" job-ref="oneOffJob" ...  />
+ ```
+ ```java
