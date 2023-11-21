@@ -1,77 +1,138 @@
-commit 2bb667f3ff60de1e6d9f73edc85578c2d70dcf88
-Author: yx9o <yangx_soft@163.com>
-Date:   Fri Nov 17 11:06:13 2023 +0800
+commit 637d11612ac56fe97ee0a5424c32688ebc5a4ff4
+Author: jiangML <1060319118@qq.com>
+Date:   Tue Nov 21 19:28:19 2023 +0800
 
-    Correct IMPORT DATABASE CONFIGURATION syntax document (#29056)
+    Update doc for DistSQL (#29112)
 
-diff --git a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/ral/import-database-configuration.cn.md b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/ral/import-database-configuration.cn.md
-index 9cc71819a77..cf10cca4ccb 100644
---- a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/ral/import-database-configuration.cn.md
-+++ b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/ral/import-database-configuration.cn.md
-@@ -13,10 +13,7 @@ weight = 12
- {{% tab name="语法" %}}
- ```sql
- ExportDatabaseConfiguration ::=
--  'IMPORT' 'DATABASE' 'CONFIGURATION' 'FROM' 'FILE' filePath ('TO' databaseName)?
--
--databaseName ::=
--  identifier
-+  'IMPORT' 'DATABASE' 'CONFIGURATION' 'FROM' 'FILE' filePath
- 
- filePath ::=
-   string
-@@ -38,7 +35,7 @@ filePath ::=
- - 将 `YAML` 中的配置导入到指定逻辑库中
- 
- ```sql
--IMPORT DATABASE CONFIGURATION FROM FILE "/xxx/config_sharding_db.yaml" TO sharding_db;
-+IMPORT DATABASE CONFIGURATION FROM FILE "/xxx/config_sharding_db.yaml";
+diff --git a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-auditors.cn.md b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-auditors.cn.md
+index 7df776bf118..d0a1e0d6695 100644
+--- a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-auditors.cn.md
++++ b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-auditors.cn.md
+@@ -49,7 +49,7 @@ mysql> SHOW SHARDING AUDITORS FROM sharding_db;
+ +-------------------------------+-------------------------+-------+
+ | name                          | type                    | props |
+ +-------------------------------+-------------------------+-------+
+-| sharding_key_required_auditor | dml_sharding_conditions | {}    |
++| sharding_key_required_auditor | dml_sharding_conditions |       |
+ +-------------------------------+-------------------------+-------+
+ 1 row in set (0.01 sec)
  ```
- 
- - 将 `YAML` 中的配置导入到当前逻辑库中
-@@ -49,8 +46,8 @@ IMPORT DATABASE CONFIGURATION FROM FILE "/xxx/config_sharding_db.yaml";
- 
- ### 保留字
- 
--`IMPORT`、`DATABASE`、`CONFIGURATION`、`FROM`、`FILE`、`TO`
-+`IMPORT`、`DATABASE`、`CONFIGURATION`、`FROM`、`FILE`
- 
- ### 相关链接
- 
--- [保留字](/cn/user-manual/shardingsphere-proxy/distsql/syntax/reserved-word/)
-\ No newline at end of file
-+- [保留字](/cn/user-manual/shardingsphere-proxy/distsql/syntax/reserved-word/)
-diff --git a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/ral/import-database-configuration.en.md b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/ral/import-database-configuration.en.md
-index fda7344b777..66c057f539b 100644
---- a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/ral/import-database-configuration.en.md
-+++ b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/ral/import-database-configuration.en.md
-@@ -13,10 +13,7 @@ The `IMPORT DATABASE CONFIGURATION` syntax is used to import `YAML` configuratio
- {{% tab name="Grammar" %}}
- ```sql
- ExportDatabaseConfiguration ::=
--  'IMPORT' 'DATABASE' 'CONFIGURATION' 'FROM' 'FILE' filePath ('TO' databaseName)?
--
--databaseName ::=
--  identifier
-+  'IMPORT' 'DATABASE' 'CONFIGURATION' 'FROM' 'FILE' filePath
- 
- filePath ::=
-   string
-@@ -38,7 +35,7 @@ filePath ::=
- - Import the configuration in `YAML` into the specified database
- 
- ```sql
--IMPORT DATABASE CONFIGURATION FROM FILE "/xxx/config_sharding_db.yaml" TO sharding_db;
-+IMPORT DATABASE CONFIGURATION FROM FILE "/xxx/config_sharding_db.yaml";
+@@ -65,7 +65,7 @@ mysql> SHOW SHARDING AUDITORS;
+ +-------------------------------+-------------------------+-------+
+ | name                          | type                    | props |
+ +-------------------------------+-------------------------+-------+
+-| sharding_key_required_auditor | dml_sharding_conditions | {}    |
++| sharding_key_required_auditor | dml_sharding_conditions |       |
+ +-------------------------------+-------------------------+-------+
+ 1 row in set (0.00 sec)
  ```
- 
- - Import the configuration in `YAML` into the current database
-@@ -49,7 +46,7 @@ IMPORT DATABASE CONFIGURATION FROM FILE "/xxx/config_sharding_db.yaml";
- 
- ### Reserved word
- 
--`IMPORT`, `DATABASE`, `CONFIGURATION`, `FROM`, `FILE`, `TO`
-+`IMPORT`, `DATABASE`, `CONFIGURATION`, `FROM`, `FILE`
- 
- ### Related links
- 
+diff --git a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-auditors.en.md b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-auditors.en.md
+index f2760f44e2e..498f681d90d 100644
+--- a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-auditors.en.md
++++ b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-auditors.en.md
+@@ -50,7 +50,7 @@ mysql> SHOW SHARDING AUDITORS FROM sharding_db;
+ +-------------------------------+-------------------------+-------+
+ | name                          | type                    | props |
+ +-------------------------------+-------------------------+-------+
+-| sharding_key_required_auditor | dml_sharding_conditions | {}    |
++| sharding_key_required_auditor | dml_sharding_conditions |       |
+ +-------------------------------+-------------------------+-------+
+ 1 row in set (0.01 sec)
+ ```
+@@ -66,7 +66,7 @@ mysql> SHOW SHARDING AUDITORS;
+ +-------------------------------+-------------------------+-------+
+ | name                          | type                    | props |
+ +-------------------------------+-------------------------+-------+
+-| sharding_key_required_auditor | dml_sharding_conditions | {}    |
++| sharding_key_required_auditor | dml_sharding_conditions |       |
+ +-------------------------------+-------------------------+-------+
+ 1 row in set (0.00 sec)
+ ```
+diff --git a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-key-generator.cn.md b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-key-generator.cn.md
+index d44f27fede9..da42bf49155 100644
+--- a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-key-generator.cn.md
++++ b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-key-generator.cn.md
+@@ -49,7 +49,7 @@ mysql> SHOW SHARDING KEY GENERATORS FROM sharding_db;
+ +-------------------------+-----------+-------+
+ | name                    | type      | props |
+ +-------------------------+-----------+-------+
+-| snowflake_key_generator | snowflake | {}    |
++| snowflake_key_generator | snowflake |       |
+ +-------------------------+-----------+-------+
+ 1 row in set (0.00 sec)
+ ```
+@@ -65,7 +65,7 @@ mysql> SHOW SHARDING KEY GENERATORS;
+ +-------------------------+-----------+-------+
+ | name                    | type      | props |
+ +-------------------------+-----------+-------+
+-| snowflake_key_generator | snowflake | {}    |
++| snowflake_key_generator | snowflake |       |
+ +-------------------------+-----------+-------+
+ 1 row in set (0.00 sec)
+ ```
+diff --git a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-key-generator.en.md b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-key-generator.en.md
+index 5e89863c5ff..f06b72aa4e6 100644
+--- a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-key-generator.en.md
++++ b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-sharding-key-generator.en.md
+@@ -49,7 +49,7 @@ mysql> SHOW SHARDING KEY GENERATORS FROM sharding_db;
+ +-------------------------+-----------+-------+
+ | name                    | type      | props |
+ +-------------------------+-----------+-------+
+-| snowflake_key_generator | snowflake | {}    |
++| snowflake_key_generator | snowflake |       |
+ +-------------------------+-----------+-------+
+ 1 row in set (0.00 sec)
+ ```
+@@ -65,7 +65,7 @@ mysql> SHOW SHARDING KEY GENERATORS;
+ +-------------------------+-----------+-------+
+ | name                    | type      | props |
+ +-------------------------+-----------+-------+
+-| snowflake_key_generator | snowflake | {}    |
++| snowflake_key_generator | snowflake |       |
+ +-------------------------+-----------+-------+
+ 1 row in set (0.00 sec)
+ ```
+diff --git a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-unused-sharding-auditors.cn.md b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-unused-sharding-auditors.cn.md
+index 44520583ab7..6a746a2ddb9 100644
+--- a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-unused-sharding-auditors.cn.md
++++ b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-unused-sharding-auditors.cn.md
+@@ -50,7 +50,7 @@ mysql> SHOW UNUSED SHARDING AUDITORS FROM sharding_db;
+ +-------------------------------+-------------------------+-------+
+ | name                          | type                    | props |
+ +-------------------------------+-------------------------+-------+
+-| sharding_key_required_auditor | dml_sharding_conditions | {}    |
++| sharding_key_required_auditor | dml_sharding_conditions |       |
+ +-------------------------------+-------------------------+-------+
+ 1 row in set (0.00 sec)
+ ```
+@@ -66,7 +66,7 @@ mysql> SHOW UNUSED SHARDING AUDITORS;
+ +-------------------------------+-------------------------+-------+
+ | name                          | type                    | props |
+ +-------------------------------+-------------------------+-------+
+-| sharding_key_required_auditor | dml_sharding_conditions | {}    |
++| sharding_key_required_auditor | dml_sharding_conditions |       |
+ +-------------------------------+-------------------------+-------+
+ 1 row in set (0.00 sec)
+ ```
+diff --git a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-unused-sharding-auditors.en.md b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-unused-sharding-auditors.en.md
+index c0b2bad83c5..8e8df6d1087 100644
+--- a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-unused-sharding-auditors.en.md
++++ b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/sharding/show-unused-sharding-auditors.en.md
+@@ -51,7 +51,7 @@ mysql> SHOW UNUSED SHARDING AUDITORS FROM sharding_db;
+ +-------------------------------+-------------------------+-------+
+ | name                          | type                    | props |
+ +-------------------------------+-------------------------+-------+
+-| sharding_key_required_auditor | dml_sharding_conditions | {}    |
++| sharding_key_required_auditor | dml_sharding_conditions |       |
+ +-------------------------------+-------------------------+-------+
+ 1 row in set (0.01 sec)
+ ```
+@@ -67,7 +67,7 @@ mysql> SHOW UNUSED SHARDING AUDITORS;
+ +-------------------------------+-------------------------+-------+
+ | name                          | type                    | props |
+ +-------------------------------+-------------------------+-------+
+-| sharding_key_required_auditor | dml_sharding_conditions | {}    |
++| sharding_key_required_auditor | dml_sharding_conditions |       |
+ +-------------------------------+-------------------------+-------+
+ 1 row in set (0.00 sec)
+ ```
