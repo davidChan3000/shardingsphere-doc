@@ -1,19 +1,290 @@
-commit f61f1b92dff2bc2d5efcb5647602b8a2f7e2fdd9
-Author: 孙念君 Nianjun Sun <sunnianjun@apache.org>
-Date:   Wed Feb 21 20:25:06 2024 +0800
+commit 17c3d0fa1446a156ef9023a76bedba5a90d92b49
+Author: jiangML <1060319118@qq.com>
+Date:   Thu Feb 22 10:38:54 2024 +0800
 
-    Fix : fix the deadlink (#30233)
+    Update observability doc (#30226)
 
-diff --git a/docs/document/content/dev-manual/sharding.en.md b/docs/document/content/dev-manual/sharding.en.md
-index 53061b4f308..dd85c00cdcc 100644
---- a/docs/document/content/dev-manual/sharding.en.md
-+++ b/docs/document/content/dev-manual/sharding.en.md
-@@ -34,7 +34,7 @@ Sharding Algorithm definition
+diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/observability/_index.cn.md b/docs/document/content/user-manual/shardingsphere-jdbc/observability/_index.cn.md
+index cb610cce420..fd716593ec0 100644
+--- a/docs/document/content/user-manual/shardingsphere-jdbc/observability/_index.cn.md
++++ b/docs/document/content/user-manual/shardingsphere-jdbc/observability/_index.cn.md
+@@ -14,7 +14,7 @@ git clone --depth 1 https://github.com/apache/shardingsphere.git
+ cd shardingsphere
+ mvn clean install -DskipITs -DskipTests -Prelease
+ ```
+-agent 包输出目录为 distribution/agent/target/apache-shardingsphere-${latest.release.version}-shardingsphere-agent-bin.tar.gz
++Agent 制品 `distribution/agent/target/apache-shardingsphere-${latest.release.version}-shardingsphere-agent-bin.tar.gz`
  
- ### Fully-qualified class name
+ ### 目录说明
  
--[`org.apache.shardingsphere.keygen.core.algorithm.KeyGenerateAlgorithm`](https://github.com/apache/shardingsphere/blob/master/infra/algorithm/key-generator/core/src/main/java/org/apache/shardingsphere/keygen/core/algorithm/KeyGenerateAlgorithm.java)
-+[`org.apache.shardingsphere.keygen.core.algorithm.KeyGenerateAlgorithm`](https://github.com/apache/shardingsphere/blob/master/infra/algorithm/key-generator/core/src/main/java/org/apache/shardingsphere/infra/algorithm/keygen/core/KeyGenerateAlgorithm.java)
+@@ -41,7 +41,6 @@ tree
+ │       ├── shardingsphere-agent-tracing-opentelemetry-${latest.release.version}.jar
+ └── shardingsphere-agent-${latest.release.version}.jar
+ ```
+-Agent 日志输出位置在 `agent/logs/stdout.log`。
  
- ### Definition
+ ### 配置说明
  
+@@ -80,11 +79,11 @@ plugins:
+ 
+ * 参数说明
+ 
+-| 名称                                | 说明            |
+-|-----------------------------------|---------------|
+-| host                              | 主机            |
+-| port                              | 端口            |
+-| jvm-information-collector-enabled | 是否采集 JVM 指标信息 |
++| 名称                               | 说明                |
++|-----------------------------------|---------------------|
++| host                              | 主机                 |
++| port                              | 端口                 |
++| jvm-information-collector-enabled | 是否采集 JVM 指标信息  |
+ 
+ #### OpenTelemetry
+ 
+@@ -92,16 +91,16 @@ OpenTelemetry 可以导出 tracing 数据到 Jaeger，Zipkin。
+ 
+ * 参数说明
+ 
+-| 名称                                 | 说明              |
+-|------------------------------------|-----------------|
+-| otel.service.name                  | 服务名称            |
+-| otel.traces.exporter               | traces exporter |
+-| otel.exporter.otlp.traces.endpoint | traces endpoint |
+-| otel.traces.sampler                | traces sampler  |
++| 名称                                  | 说明                |
++|-------------------------------------|----------------------|
++| otel.service.name                   | 服务名称              |
++| otel.traces.exporter                | traces exporter      |
++| otel.exporter.otlp.traces.endpoint  | traces endpoint      |
++| otel.traces.sampler                 | traces sampler       |
+ 
+ 参数参考 [OpenTelemetry SDK Autoconfigure](https://github.com/open-telemetry/opentelemetry-java/tree/main/sdk-extensions/autoconfigure)
+ 
+-## ShardingSphere-JDBC 使用
++## 使用方式
+ 
+ + 1 准备好已集成 `ShardingSphere-JDBC` 的 `SpringBoot` 项目，test-project.jar
+ + 2 启动项目
+@@ -113,15 +112,15 @@ java -javaagent:/agent/shardingsphere-agent-${latest.release.version}.jar -jar t
+ 
+ ## Metrics
+ 
+-| 指标名称                                  | 指标类型      | 指标描述                                                                    |
+-|:--------------------------------------|:----------|:------------------------------------------------------------------------|
+-| build_info                            | GAUGE     | 构建信息                                                                    |
+-| parsed_sql_total                      | COUNTER   | 按类型（INSERT、UPDATE、DELETE、SELECT、DDL、DCL、DAL、TCL、RQL、RDL、RAL、RUL）分类的解析总数 |
+-| routed_sql_total                      | COUNTER   | 按类型（INSERT、UPDATE、DELETE、SELECT）分类的路由总数                                 |
+-| routed_result_total                   | COUNTER   | 路由结果总数(数据源路由结果、表路由结果)                                                   |
+-| jdbc_state                            | GAUGE     | ShardingSphere-JDBC 状态信息。0 表示正常状态；1 表示熔断状态；2 锁定状态                       |
+-| jdbc_meta_data_info                   | GAUGE     | ShardingSphere-JDBC 元数据信息                                               |
+-| jdbc_statement_execute_total          | COUNTER   | 语句执行总数                                                                  |
+-| jdbc_statement_execute_errors_total   | COUNTER   | 语句执行错误总数                                                                |
+-| jdbc_statement_execute_latency_millis | HISTOGRAM | 语句执行耗时                                                                  |
+-| jdbc_transactions_total               | COUNTER   | 事务总数，按 commit，rollback 分类                                               |
++| 指标名称                                 | 指标类型    | 指标描述                                                                                       |
++|:----------------------------------------|:----------|:----------------------------------------------------------------------------------------------|
++| build_info                              | GAUGE     | 构建信息                                                                                       |
++| parsed_sql_total                        | COUNTER   | 按类型（INSERT、UPDATE、DELETE、SELECT、DDL、DCL、DAL、TCL、RQL、RDL、RAL、RUL）分类的解析总数        |
++| routed_sql_total                        | COUNTER   | 按类型（INSERT、UPDATE、DELETE、SELECT）分类的路由总数                                             |
++| routed_result_total                     | COUNTER   | 路由结果总数(数据源路由结果、表路由结果)                                                            |
++| jdbc_state                              | GAUGE     | ShardingSphere-JDBC 状态信息。0 表示正常状态；1 表示熔断状态；2 锁定状态                              |
++| jdbc_meta_data_info                     | GAUGE     | ShardingSphere-JDBC 元数据信息                                                                  |
++| jdbc_statement_execute_total            | COUNTER   | 语句执行总数                                                                                    |
++| jdbc_statement_execute_errors_total     | COUNTER   | 语句执行错误总数                                                                                 |
++| jdbc_statement_execute_latency_millis   | HISTOGRAM | 语句执行耗时                                                                                    |
++| jdbc_transactions_total                 | COUNTER   | 事务总数，按 commit，rollback 分类                                                                |
+diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/observability/_index.en.md b/docs/document/content/user-manual/shardingsphere-jdbc/observability/_index.en.md
+index 5032a54cb0a..270e66421b2 100644
+--- a/docs/document/content/user-manual/shardingsphere-jdbc/observability/_index.en.md
++++ b/docs/document/content/user-manual/shardingsphere-jdbc/observability/_index.en.md
+@@ -15,7 +15,7 @@ cd shardingsphere
+ mvn clean install -DskipITs -DskipTests -Prelease
+ ```
+ 
+-Artifact is distribution/agent/target/apache-shardingsphere-${latest.release.version}-shardingsphere-agent-bin.tar.gz
++Agent artifact is `distribution/agent/target/apache-shardingsphere-${latest.release.version}-shardingsphere-agent-bin.tar.gz`
+ 
+ ### Directory structure
+ 
+@@ -42,7 +42,6 @@ tree
+ │       ├── shardingsphere-agent-tracing-opentelemetry-${latest.release.version}.jar
+ └── shardingsphere-agent-${latest.release.version}.jar
+ ```
+-Agent log output location is `agent/logs/stdout.log`.
+ 
+ ### Configuration
+ 
+@@ -103,7 +102,7 @@ OpenTelemetry can export tracing data to Jaeger, Zipkin.
+ 
+ Parameter reference [OpenTelemetry SDK Autoconfigure](https://github.com/open-telemetry/opentelemetry-java/tree/main/sdk-extensions/autoconfigure)
+ 
+-## Usage in ShardingSphere-JDBC
++## Usage
+ 
+ + 1 The `SpringBoot` project ready to integrate `ShardingSphere-JDBC`, test-project.jar
+ + 2 Startup project
+diff --git a/docs/document/content/user-manual/shardingsphere-proxy/observability/_index.cn.md b/docs/document/content/user-manual/shardingsphere-proxy/observability/_index.cn.md
+index a6fc8d381bb..559f1b966e2 100644
+--- a/docs/document/content/user-manual/shardingsphere-proxy/observability/_index.cn.md
++++ b/docs/document/content/user-manual/shardingsphere-proxy/observability/_index.cn.md
+@@ -14,7 +14,9 @@ git clone --depth 1 https://github.com/apache/shardingsphere.git
+ cd shardingsphere
+ mvn clean install -DskipITs -DskipTests -Prelease
+ ```
+-agent 包输出目录为 distribution/agent/target/apache-shardingsphere-${latest.release.version}-shardingsphere-agent-bin.tar.gz
++Agent 制品 `distribution/agent/target/apache-shardingsphere-${latest.release.version}-shardingsphere-agent-bin.tar.gz`
++
++Proxy 制品 `distribution/proxy/target/apache-shardingsphere-${latest.release.version}-shardingsphere-proxy-bin.tar.gz`
+ 
+ ### 目录说明
+ 
+@@ -41,7 +43,6 @@ tree
+ │       ├── shardingsphere-agent-tracing-opentelemetry-${latest.release.version}.jar
+ └── shardingsphere-agent-${latest.release.version}.jar
+ ```
+-Agent 日志输出位置在 `agent/logs/stdout.log`。
+ 
+ ### 配置说明
+ 
+@@ -102,52 +103,18 @@ OpenTelemetry 可以导出 tracing 数据到 Jaeger，Zipkin。
+ 参数参考 [OpenTelemetry SDK Autoconfigure](https://github.com/open-telemetry/opentelemetry-java/tree/main/sdk-extensions/autoconfigure)
+ 
+ 
+-## ShardingSphere-Proxy 中使用
+-
+-### 通过非容器环境使用
+-
+-* 编辑启动脚本
++## 使用方式
+ 
+-配置 shardingsphere-agent-${latest.release.version}.jar 的绝对路径到 ShardingSphere-Proxy 的 start.sh 启动脚本中，请注意配置自己对应的绝对路径。
++启动 ShardingSphere-Proxy
+ 
+ ```shell
+-nohup java ${JAVA_OPTS} ${JAVA_MEM_OPTS} \
+--javaagent:/xxxxx/agent/shardingsphere-agent-${latest.release.version}.jar \
+--classpath ${CLASS_PATH} ${MAIN_CLASS} >> ${STDOUT_FILE} 2>&1 &
++tar -zxvf apache-shardingsphere-${latest.release.version}-shardingsphere-proxy-bin.tar.gz
++cd apache-shardingsphere-${latest.release.version}-shardingsphere-proxy-bin
++./bin/start.sh -g
+ ```
+ 
+-* 启动 ShardingSphere-Proxy
+-
+-```shell
+-bin/start.sh
+-```
+ 正常启动后，可以在 ShardingSphere-Proxy 日志中找到 plugin 的加载信息，访问 Proxy 后，可以通过配置的监控地址查看到 `Metric` 和 `Tracing` 的数据。
+ 
+-### 通过容器环境使用
+-
+-- 假设本地已完成如下的对应配置。
+-  - 包含 ShardingSphere-Agent 二进制包解压后的所有文件的文件夹 `./custom/agent/`
+-  - 包含 `global.yaml` 等 ShardingSphere-Proxy 的配置文件的文件夹为 `./custom/conf/`
+-
+-- 此时可通过环境变量 `JVM_OPT` 来配置 ShardingSphere-Agent 的使用。
+-  以在 Docker Compose 环境下启动为例，合理的 `docker-compose.yml` 示例如下。
+-
+-```yaml
+-version: "3.8"
+-
+-services:
+-  apache-shardingsphere-proxy:
+-    image: apache/shardingsphere-proxy:latest
+-    environment:
+-      JVM_OPTS: "-javaagent:/agent/shardingsphere-agent-${latest.release.version}.jar"
+-      PORT: 3308
+-    volumes:
+-      - ./custom/agent/:/agent/
+-      - ./custom/conf/:/opt/shardingsphere-proxy/conf/
+-    ports:
+-      - "13308:3308"
+-```
+-
+ ## Metrics
+ 
+ | 指标名称                         | 指标类型      | 指标描述                                                                      |
+diff --git a/docs/document/content/user-manual/shardingsphere-proxy/observability/_index.en.md b/docs/document/content/user-manual/shardingsphere-proxy/observability/_index.en.md
+index d8bad5147dd..7be01475ef7 100644
+--- a/docs/document/content/user-manual/shardingsphere-proxy/observability/_index.en.md
++++ b/docs/document/content/user-manual/shardingsphere-proxy/observability/_index.en.md
+@@ -15,7 +15,9 @@ cd shardingsphere
+ mvn clean install -DskipITs -DskipTests -Prelease
+ ```
+ 
+-Artifact is distribution/agent/target/apache-shardingsphere-${latest.release.version}-shardingsphere-agent-bin.tar.gz
++Agent artifact is `distribution/agent/target/apache-shardingsphere-${latest.release.version}-shardingsphere-agent-bin.tar.gz`
++
++Proxy artifact is `distribution/proxy/target/apache-shardingsphere-${latest.release.version}-shardingsphere-proxy-bin.tar.gz`
+ 
+ ### Directory structure
+ 
+@@ -42,7 +44,6 @@ tree
+ │       ├── shardingsphere-agent-tracing-opentelemetry-${latest.release.version}.jar
+ └── shardingsphere-agent-${latest.release.version}.jar
+ ```
+-Agent log output location is `agent/logs/stdout.log`.
+ 
+ ### Configuration
+ 
+@@ -103,54 +104,18 @@ OpenTelemetry can export tracing data to Jaeger, Zipkin.
+ 
+ Parameter reference [OpenTelemetry SDK Autoconfigure](https://github.com/open-telemetry/opentelemetry-java/tree/main/sdk-extensions/autoconfigure)
+ 
+-## Usage in ShardingSphere-Proxy
+-
+-### Using via a non-container environment
+-
+-* Edit the startup script
+-
+-Configure the absolute path of shardingsphere-agent-${latest.release.version}.jar to the start.sh startup script of shardingsphere proxy. 
+-
+-```shell
+-nohup java ${JAVA_OPTS} ${JAVA_MEM_OPTS} \
+--javaagent:/xxxxx/agent/shardingsphere-agent-${latest.release.version}.jar \
+--classpath ${CLASS_PATH} ${MAIN_CLASS} >> ${STDOUT_FILE} 2>&1 &
+-```
++## Usage
+ 
+-* Start ShardingSphere-Proxy
++Start ShardingSphere-Proxy
+ 
+ ```shell
+-bin/start.sh
++tar -zxvf apache-shardingsphere-${latest.release.version}-shardingsphere-proxy-bin.tar.gz
++cd apache-shardingsphere-${latest.release.version}-shardingsphere-proxy-bin
++./bin/start.sh -g
+ ```
+ 
+ After startup, you can find the plugin info in the log of ShardingSphere-Proxy, `Metric` and `Tracing` data can be viewed through the configured monitoring address.
+ 
+-### Use via container environment
+-
+-- Assume that the following corresponding configurations have been completed locally.
+-  - Folder `./custom/agent/` that contains all files after unpacking ShardingSphere-Agent binary package
+-  - The folder containing the configuration files of ShardingSphere-Proxy such as `global.yaml` is `./custom/conf/`
+-
+-- At this point, the use of ShardingSphere-Agent can be configured through the environment variable `JVM_OPT`.
+-  Taking starting in the Docker Compose environment as an example, a reasonable `docker-compose.yml` example is as
+-  follows.
+-
+-```yaml
+-version: "3.8"
+-
+-services:
+-  apache-shardingsphere-proxy:
+-    image: apache/shardingsphere-proxy:latest
+-    environment:
+-      JVM_OPTS: "-javaagent:/agent/shardingsphere-agent-${latest.release.version}.jar"
+-      PORT: 3308
+-    volumes:
+-      - ./custom/agent:/agent/
+-      - ./custom/conf:/opt/shardingsphere-proxy/conf/
+-    ports:
+-      - "13308:3308"
+-```
+-
+ ## Metrics
+ 
+ | Name                         | Type      | Description                                                                                                                               |
