@@ -1,74 +1,34 @@
-commit 05f445463cd5c3f5e774a5eba26100d6361b9e88
-Author: Zhengqiang Duan <duanzhengqiang@apache.org>
-Date:   Tue Feb 27 11:51:39 2024 +0800
+commit dd75c31ac3bd50eb3253f58bfadcacb2a1eab74f
+Author: Xinze Guo <101622833+azexcy@users.noreply.github.com>
+Date:   Tue Feb 27 17:42:27 2024 +0800
 
-    Add new infra algorithm load balancer module and algorithm implementation (#30309)
+    Remove BinlogSyncChannelAlreadyClosedException (#30316)
+    
+    * Remove BinlogSyncChannelAlreadyClosedException
+    
+    * Update doc
 
 diff --git a/docs/document/content/user-manual/error-code/sql-error-code.cn.md b/docs/document/content/user-manual/error-code/sql-error-code.cn.md
-index 39d90ec239a..5c2be0d577d 100644
+index 5c2be0d577d..34a017e9b68 100644
 --- a/docs/document/content/user-manual/error-code/sql-error-code.cn.md
 +++ b/docs/document/content/user-manual/error-code/sql-error-code.cn.md
-@@ -212,8 +212,6 @@ SQL 错误码以标准的 SQL State，Vendor Code 和详细错误信息提供，
- | 44000     | 20086       | Some routed data sources do not belong to configured data sources. routed data sources: \`%s\`, configured data sources: \`%s\`. |
- | 44000     | 20087       | Please check your sharding conditions \`%s\` to avoid same record in table \`%s\` routing to multiple data nodes.                |
- | 44000     | 20088       | Cannot found routing table factor, data source: %s, actual table: %s.                                                            |
--| 44000     | 20090       | Can not find strategy for generate keys with table \`%s\`.                                                                       |
--| HY000     | 20091       | Key generate algorithm \`%s\` initialization failed, reason is: %s.                                                              |
- | HY000     | 20092       | Clock is moving backwards, last time is %d milliseconds, current time is %d milliseconds.                                        |
- | HY000     | 20099       | Sharding plugin error, reason is: %s                                                                                             |
- 
-@@ -284,6 +282,20 @@ SQL 错误码以标准的 SQL State，Vendor Code 和详细错误信息提供，
- | HY000     | 20980       | Mask algorithm \`%s\` initialization failed, reason is: %s. |
- | 42S02     | 20990       | Invalid mask algorithm \`%s\` in database \`%s\`.           |
- 
-+### 基础算法 - 分布式序列
-+
-+| SQL State | Vendor Code | 错误信息                                                        |
-+|-----------|-------------|-------------------------------------------------------------|
-+| 44000     | 21180       | Can not find strategy for generate keys with table \`%s\`.                                                                       |
-+| HY000     | 21181       | Key generate algorithm \`%s\` initialization failed, reason is: %s.                                                              |
-+
-+### 基础算法 - 负载均衡
-+
-+| SQL State | Vendor Code | 错误信息                                                        |
-+|-----------|-------------|-------------------------------------------------------------|
-+| 44000     | 21280       | Invalid available target weight \`%s\`.                             |
-+| HY000     | 21281       | \'%s\' load balance algorithm initialization failed, reason is: %s. |
-+
- ## 其他异常
- 
- | SQL State | Vendor Code | 错误信息                            |
+@@ -137,7 +137,6 @@ SQL 错误码以标准的 SQL State，Vendor Code 和详细错误信息提供，
+ | 08000     | 18090       | Data sources can not connect, reason is: %s                                        |
+ | HY000     | 18091       | Importer job write data failed.                                                    |
+ | 08000     | 18092       | Get binlog position failed by job \`%s\`, reason is: %s                            |
+-| HY000     | 18093       | Can not poll event because of binlog sync channel already closed.                  |
+ | HY000     | 18095       | Can not find consistency check job of \`%s\`.                                      |
+ | HY000     | 18096       | Uncompleted consistency check job \`%s\` exists.                                   |
+ | HY000     | 18200       | Not find stream data source table.                                                 |
 diff --git a/docs/document/content/user-manual/error-code/sql-error-code.en.md b/docs/document/content/user-manual/error-code/sql-error-code.en.md
-index f4b6a98dc38..175d441e765 100644
+index 175d441e765..679edc9a11a 100644
 --- a/docs/document/content/user-manual/error-code/sql-error-code.en.md
 +++ b/docs/document/content/user-manual/error-code/sql-error-code.en.md
-@@ -212,8 +212,6 @@ SQL error codes provide by standard `SQL State`, `Vendor Code` and `Reason`, whi
- | 44000     | 20086       | Some routed data sources do not belong to configured data sources. routed data sources: \`%s\`, configured data sources: \`%s\`. |
- | 44000     | 20087       | Please check your sharding conditions \`%s\` to avoid same record in table \`%s\` routing to multiple data nodes.                |
- | 44000     | 20088       | Cannot found routing table factor, data source: %s, actual table: %s.                                                            |
--| 44000     | 20090       | Can not find strategy for generate keys with table \`%s\`.                                                                       |
--| HY000     | 20091       | Key generate algorithm \`%s\` initialization failed, reason is: %s.                                                              |
- | HY000     | 20092       | Clock is moving backwards, last time is %d milliseconds, current time is %d milliseconds.                                        |
- | HY000     | 20099       | Sharding plugin error, reason is: %s                                                                                             |
- 
-@@ -299,6 +297,20 @@ SQL error codes provide by standard `SQL State`, `Vendor Code` and `Reason`, whi
- | HY000     | 20980       | Mask algorithm \`%s\` initialization failed, reason is: %s. |
- | 42S02     | 20990       | Invalid mask algorithm \`%s\` in database \`%s\`.           |
- 
-+### Infra algorithm - key generate
-+
-+| SQL State | Vendor Code | Reason                                                      |
-+|-----------|-------------|-------------------------------------------------------------|
-+| 44000     | 21180       | Can not find strategy for generate keys with table \`%s\`.                                                                       |
-+| HY000     | 21181       | Key generate algorithm \`%s\` initialization failed, reason is: %s.                                                              |
-+
-+### Infra algorithm - load balance
-+
-+| SQL State | Vendor Code | Reason                                                              |
-+|-----------|-------------|---------------------------------------------------------------------|
-+| 44000     | 21280       | Invalid available target weight \`%s\`.                             |
-+| HY000     | 21281       | \'%s\' load balance algorithm initialization failed, reason is: %s. |
-+
- ## Other Exception
- 
- | SQL State | Vendor Code | Reason                          |
+@@ -137,7 +137,6 @@ SQL error codes provide by standard `SQL State`, `Vendor Code` and `Reason`, whi
+ | 08000     | 18090       | Data sources can not connect, reason is: %s                                        |
+ | HY000     | 18091       | Importer job write data failed.                                                    |
+ | 08000     | 18092       | Get binlog position failed by job \`%s\`, reason is: %s                            |
+-| HY000     | 18093       | Can not poll event because of binlog sync channel already closed.                  |
+ | HY000     | 18095       | Can not find consistency check job of \`%s\`.                                      |
+ | HY000     | 18096       | Uncompleted consistency check job \`%s\` exists.                                   |
+ | HY000     | 18200       | Not find stream data source table.                                                 |
