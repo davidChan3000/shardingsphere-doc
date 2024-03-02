@@ -1,132 +1,40 @@
-commit e9c1603236c66247abe6b794e31483db36650dd1
-Author: Ling Hengqian <linghengqian@outlook.com>
-Date:   Sat Mar 2 13:32:25 2024 +0800
+commit 11cfd701dc8553389ad742a43539e400b785dcd5
+Author: Liang Zhang <zhangliang@apache.org>
+Date:   Sat Mar 2 17:09:42 2024 +0800
 
-    Bump pgjbdc version to prevent CVE from being passed in Proxy (#30369)
+    Update code Conduct (#30374)
+    
+    * Add ReadwriteSplittingDataSourceMapperRuleTest
+    
+    * Add ReadwriteSplittingDataSourceMapperRuleTest
+    
+    * Update code Conduct
 
-diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/special-api/transaction/narayana.cn.md b/docs/document/content/user-manual/shardingsphere-jdbc/special-api/transaction/narayana.cn.md
-index e32d14d14e7..a010bbb9d49 100644
---- a/docs/document/content/user-manual/shardingsphere-jdbc/special-api/transaction/narayana.cn.md
-+++ b/docs/document/content/user-manual/shardingsphere-jdbc/special-api/transaction/narayana.cn.md
-@@ -13,8 +13,8 @@ Apache ShardingSphere 提供 XA 事务，集成了 Narayana 的实现。
- 
- ```xml
- <properties>
--    <narayana.version>5.12.4.Final</narayana.version>
--    <jboss-transaction-spi.version>7.6.0.Final</jboss-transaction-spi.version>
-+    <narayana.version>5.12.7.Final</narayana.version>
-+    <jboss-transaction-spi.version>7.6.1.Final</jboss-transaction-spi.version>
-     <jboss-logging.version>3.2.1.Final</jboss-logging.version>
- </properties>
- 
-diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/special-api/transaction/narayana.en.md b/docs/document/content/user-manual/shardingsphere-jdbc/special-api/transaction/narayana.en.md
-index fd5c96bcfb9..9015a1e86b2 100644
---- a/docs/document/content/user-manual/shardingsphere-jdbc/special-api/transaction/narayana.en.md
-+++ b/docs/document/content/user-manual/shardingsphere-jdbc/special-api/transaction/narayana.en.md
-@@ -13,8 +13,8 @@ Introducing Maven dependency
- 
- ```xml
- <properties>
--    <narayana.version>5.12.4.Final</narayana.version>
--    <jboss-transaction-spi.version>7.6.0.Final</jboss-transaction-spi.version>
-+    <narayana.version>5.12.7.Final</narayana.version>
-+    <jboss-transaction-spi.version>7.6.1.Final</jboss-transaction-spi.version>
-     <jboss-logging.version>3.2.1.Final</jboss-logging.version>
- </properties>
- 
-diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/transaction.cn.md b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/transaction.cn.md
-index e602b0d100a..ca12ed48de0 100644
---- a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/transaction.cn.md
-+++ b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/transaction.cn.md
-@@ -38,14 +38,14 @@ transaction:
- 手动添加 Narayana 相关依赖：
- 
- ```
--jta-5.12.4.Final.jar
--arjuna-5.12.4.Final.jar
--common-5.12.4.Final.jar
-+jta-5.12.7.Final.jar
-+arjuna-5.12.7.Final.jar
-+common-5.12.7.Final.jar
- jboss-connector-api_1.7_spec-1.0.0.Final.jar
- jboss-logging-3.2.1.Final.jar
- jboss-transaction-api_1.2_spec-1.0.0.Alpha3.jar
--jboss-transaction-spi-7.6.0.Final.jar
--narayana-jts-integration-5.12.4.Final.jar
-+jboss-transaction-spi-7.6.1.Final.jar
-+narayana-jts-integration-5.12.7.Final.jar
- shardingsphere-transaction-xa-narayana-x.x.x-SNAPSHOT.jar
- ```
- 
-diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/transaction.en.md b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/transaction.en.md
-index c48aa65da90..ae1894ac244 100644
---- a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/transaction.en.md
-+++ b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/transaction.en.md
-@@ -38,14 +38,14 @@ transaction:
- To manually add Narayana-related dependencies:
- 
- ```
--jta-5.12.4.Final.jar
--arjuna-5.12.4.Final.jar
--common-5.12.4.Final.jar
-+jta-5.12.7.Final.jar
-+arjuna-5.12.7.Final.jar
-+common-5.12.7.Final.jar
- jboss-connector-api_1.7_spec-1.0.0.Final.jar
- jboss-logging-3.2.1.Final.jar
- jboss-transaction-api_1.2_spec-1.0.0.Alpha3.jar
--jboss-transaction-spi-7.6.0.Final.jar
--narayana-jts-integration-5.12.4.Final.jar
-+jboss-transaction-spi-7.6.1.Final.jar
-+narayana-jts-integration-5.12.7.Final.jar
- shardingsphere-transaction-xa-narayana-x.x.x-SNAPSHOT.jar
- ```
- 
-diff --git a/docs/document/content/user-manual/shardingsphere-proxy/startup/dependencies-download/add_Narayana_dependency.cn.md b/docs/document/content/user-manual/shardingsphere-proxy/startup/dependencies-download/add_Narayana_dependency.cn.md
-index 24aa04948d8..08bce925347 100644
---- a/docs/document/content/user-manual/shardingsphere-proxy/startup/dependencies-download/add_Narayana_dependency.cn.md
-+++ b/docs/document/content/user-manual/shardingsphere-proxy/startup/dependencies-download/add_Narayana_dependency.cn.md
-@@ -9,14 +9,14 @@ weight = 2
- 
- ### jar 文件下载地址
- 
--- [arjuna-5.12.4.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/arjunacore/arjuna/5.12.4.Final/arjuna-5.12.4.Final.jar)
--- [common-5.12.4.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/common/5.12.4.Final/common-5.12.4.Final.jar)
-+- [arjuna-5.12.7.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/arjunacore/arjuna/5.12.7.Final/arjuna-5.12.7.Final.jar)
-+- [common-5.12.7.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/common/5.12.7.Final/common-5.12.7.Final.jar)
- - [jboss-connector-api_1.7_spec-1.0.0.Final.jar](https://repo1.maven.org/maven2/org/jboss/spec/javax/resource/jboss-connector-api_1.7_spec/1.0.0.Final/jboss-connector-api_1.7_spec-1.0.0.Final.jar)
- - [jboss-logging-3.2.1.Final.jar](https://repo1.maven.org/maven2/org/jboss/logging/jboss-logging/3.2.1.Final/jboss-logging-3.2.1.Final.jar)
- - [jboss-transaction-api_1.2_spec-1.0.0.Alpha3.jar](https://repo1.maven.org/maven2/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.0.0.Alpha3/jboss-transaction-api_1.2_spec-1.0.0.Alpha3.jar)
--- [jboss-transaction-spi-7.6.0.Final.jar](https://repo1.maven.org/maven2/org/jboss/jboss-transaction-spi/7.6.0.Final/jboss-transaction-spi-7.6.0.Final.jar)
--- [jta-5.12.4.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/jta/jta/5.12.4.Final/jta-5.12.4.Final.jar)
--- [narayana-jts-integration-5.12.4.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/jts/narayana-jts-integration/5.12.4.Final/narayana-jts-integration-5.12.4.Final.jar)
-+- [jboss-transaction-spi-7.6.1.Final.jar](https://repo1.maven.org/maven2/org/jboss/jboss-transaction-spi/7.6.1.Final/jboss-transaction-spi-7.6.1.Final.jar)
-+- [jta-5.12.7.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/jta/jta/5.12.7.Final/jta-5.12.7.Final.jar)
-+- [narayana-jts-integration-5.12.7.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/jts/narayana-jts-integration/5.12.7.Final/narayana-jts-integration-5.12.7.Final.jar)
- - [shardingsphere-transaction-xa-narayana.jar](https://mvnrepository.com/artifact/org.apache.shardingsphere/shardingsphere-transaction-xa-narayana)
- 
- 请根据 `proxy` 版本下载对应 `shardingsphere-transaction-xa-narayana.jar` 文件。
-diff --git a/docs/document/content/user-manual/shardingsphere-proxy/startup/dependencies-download/add_Narayana_dependency.en.md b/docs/document/content/user-manual/shardingsphere-proxy/startup/dependencies-download/add_Narayana_dependency.en.md
-index 64aed2321f4..3a7db12f2cb 100644
---- a/docs/document/content/user-manual/shardingsphere-proxy/startup/dependencies-download/add_Narayana_dependency.en.md
-+++ b/docs/document/content/user-manual/shardingsphere-proxy/startup/dependencies-download/add_Narayana_dependency.en.md
-@@ -9,14 +9,14 @@ Adding Narayana dependencies requires downloading the following jar files and ad
- 
- ### jar file downloads
- 
--- [arjuna-5.12.4.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/arjunacore/arjuna/5.12.4.Final/arjuna-5.12.4.Final.jar)
--- [common-5.12.4.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/common/5.12.4.Final/common-5.12.4.Final.jar)
-+- [arjuna-5.12.7.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/arjunacore/arjuna/5.12.7.Final/arjuna-5.12.7.Final.jar)
-+- [common-5.12.7.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/common/5.12.7.Final/common-5.12.7.Final.jar)
- - [jboss-connector-api_1.7_spec-1.0.0.Final.jar](https://repo1.maven.org/maven2/org/jboss/spec/javax/resource/jboss-connector-api_1.7_spec/1.0.0.Final/jboss-connector-api_1.7_spec-1.0.0.Final.jar)
- - [jboss-logging-3.2.1.Final.jar](https://repo1.maven.org/maven2/org/jboss/logging/jboss-logging/3.2.1.Final/jboss-logging-3.2.1.Final.jar)
- - [jboss-transaction-api_1.2_spec-1.0.0.Alpha3.jar](https://repo1.maven.org/maven2/org/jboss/spec/javax/transaction/jboss-transaction-api_1.2_spec/1.0.0.Alpha3/jboss-transaction-api_1.2_spec-1.0.0.Alpha3.jar)
--- [jboss-transaction-spi-7.6.0.Final.jar](https://repo1.maven.org/maven2/org/jboss/jboss-transaction-spi/7.6.0.Final/jboss-transaction-spi-7.6.0.Final.jar)
--- [jta-5.12.4.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/jta/jta/5.12.4.Final/jta-5.12.4.Final.jar)
--- [narayana-jts-integration-5.12.4.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/jts/narayana-jts-integration/5.12.4.Final/narayana-jts-integration-5.12.4.Final.jar)
-+- [jboss-transaction-spi-7.6.1.Final.jar](https://repo1.maven.org/maven2/org/jboss/jboss-transaction-spi/7.6.1.Final/jboss-transaction-spi-7.6.1.Final.jar)
-+- [jta-5.12.7.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/jta/jta/5.12.7.Final/jta-5.12.7.Final.jar)
-+- [narayana-jts-integration-5.12.7.Final.jar](https://repo1.maven.org/maven2/org/jboss/narayana/jts/narayana-jts-integration/5.12.7.Final/narayana-jts-integration-5.12.7.Final.jar)
- - [shardingsphere-transaction-xa-narayana.jar](https://mvnrepository.com/artifact/org.apache.shardingsphere/shardingsphere-transaction-xa-narayana)
- 
- Please download the corresponding `shardingsphere-transaction-xa-narayana.jar` file according to the `proxy` version.
+diff --git a/docs/community/content/involved/conduct/code.cn.md b/docs/community/content/involved/conduct/code.cn.md
+index 9889e49347a..ef730c37551 100644
+--- a/docs/community/content/involved/conduct/code.cn.md
++++ b/docs/community/content/involved/conduct/code.cn.md
+@@ -45,7 +45,8 @@ chapter = true
+      - 除了直接返回方法入参，返回变量使用 `result` 命名；
+      - 循环中使用 `each` 命名循环变量；
+      - map 中使用 `entry` 代替 `each`；
+-     - 捕获的异常名称命名为 `ex` ；捕获异常且不做任何事情，异常名称命名为 `ignored`。
++     - 捕获的异常名称命名为 `ex` ；
++     - 捕获异常且不做任何事情，异常名称命名为 `ignored`。
+    - 工具类名称命名为 `xxUtils`。
+    - 配置文件使用 `Spinal Case` 命名（一种使用 `-` 分割单词的特殊 `Snake Case`）。
+  - 需要注释解释的代码尽量提成小方法，用方法名称解释。
+diff --git a/docs/community/content/involved/conduct/code.en.md b/docs/community/content/involved/conduct/code.en.md
+index c61601ecd37..2cbc19fb23d 100644
+--- a/docs/community/content/involved/conduct/code.en.md
++++ b/docs/community/content/involved/conduct/code.en.md
+@@ -42,7 +42,8 @@ The following code of conduct is based on full compliance with [ASF CODE OF COND
+      - Except return an input parameter as result, returning variable should be named with `result`;
+      - Variables in the loop structure are named with `each`;
+      - Replace `each` with `entry` in map;
+-     - Exceptions when catch are named with `ex`; Exceptions when catch but do nothing are named with `ignored`.
++     - Exceptions when catch are named with `ex`;
++     - Exceptions when catch but do nothing are named with `ignored`.
+    - Utility class should be named in the form of `xxUtils`.
+    - Name property files with `Spinal Case`(a variant of `Snake Case` which uses hyphens `-` to separate words).
+  - Split codes that need to add notes with it into small methods, which are explained with method names.
