@@ -1260,8 +1260,8 @@ String sql = &amp;#34;SELECT * FROM t_order&amp;#34;; try ( HintManager hintMana
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://shardingsphere.apache.org/document/current/cn/user-manual/shardingsphere-proxy/distsql/syntax/ral/plugin/show-load-balance-algorithm-plugins/</guid>
-      <description>描述 SHOW LOAD BALANCE ALGORITHM PLUGINS 语法用于查询 org.apache.shardingsphere.infra.algorithm.load.balancer.core.LoadBalanceAlgorithm 接口的所有实现类。
-语法 语法 铁路图  showLoadBalanceAlgorithmPlugins ::= &amp;#39;SHOW&amp;#39; &amp;#39;LOAD&amp;#39; &amp;#39;BALANCE&amp;#39; &amp;#39;ALGORITHM&amp;#39; &amp;#39;PLUGINS&amp;#39;       返回值说明    列 说明     type 类型   type_aliases 类型别名   description 描述    示例  查询 org.apache.shardingsphere.infra.algorithm.load.balancer.core.LoadBalanceAlgorithm 接口的所有实现类  SHOW LOAD BALANCE ALGORITHM PLUGINS SHOW LOAD BALANCE ALGORITHM PLUGINS; +-------------+--------------+-------------+ | type | type_aliases | description | +-------------+--------------+-------------+ | ROUND_ROBIN | | | | RANDOM | | | | WEIGHT | | | +-------------+--------------+-------------+ 3 rows in set (0.</description>
+      <description>描述 SHOW LOAD BALANCE ALGORITHM PLUGINS 语法用于查询 org.apache.shardingsphere.infra.algorithm.loadbalancer.core.LoadBalanceAlgorithm 接口的所有实现类。
+语法 语法 铁路图  showLoadBalanceAlgorithmPlugins ::= &amp;#39;SHOW&amp;#39; &amp;#39;LOAD&amp;#39; &amp;#39;BALANCE&amp;#39; &amp;#39;ALGORITHM&amp;#39; &amp;#39;PLUGINS&amp;#39;       返回值说明    列 说明     type 类型   type_aliases 类型别名   description 描述    示例  查询 org.apache.shardingsphere.infra.algorithm.loadbalancer.core.LoadBalanceAlgorithm 接口的所有实现类  SHOW LOAD BALANCE ALGORITHM PLUGINS SHOW LOAD BALANCE ALGORITHM PLUGINS; +-------------+--------------+-------------+ | type | type_aliases | description | +-------------+--------------+-------------+ | ROUND_ROBIN | | | | RANDOM | | | | WEIGHT | | | +-------------+--------------+-------------+ 3 rows in set (0.</description>
     </item>
     
     <item>
@@ -1576,9 +1576,9 @@ transaction: defaultType: BASE providerType: Seata 搭建 Seata Server，添加�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://shardingsphere.apache.org/document/current/cn/dev-manual/infra-algorithm/</guid>
-      <description>LoadBalanceAlgorithm 全限定类名 org.apache.shardingsphere.infra.algorithm.load.balancer.core.LoadBalanceAlgorithm
+      <description>LoadBalanceAlgorithm 全限定类名 org.apache.shardingsphere.infra.algorithm.loadbalancer.core.LoadBalanceAlgorithm
 定义 负载均衡算法，可以使用在读写分离、JDBC 双路由等功能中。
-已知实现    配置标识 详细说明 全限定类名     ROUND_ROBIN 基于轮询的负载均衡算法 org.apache.shardingsphere.infra.algorithm.load.balancer.round.robin.RoundRobinLoadBalanceAlgorithm   RANDOM 基于随机的负载均衡算法 org.apache.shardingsphere.infra.algorithm.load.balancer.random.RandomLoadBalanceAlgorithm   WEIGHT 基于权重的负载均衡算法 org.apache.shardingsphere.infra.algorithm.load.balancer.weight.WeightLoadBalanceAlgorithm    KeyGenerateAlgorithm 全限定类名 org.apache.shardingsphere.keygen.core.algorithm.KeyGenerateAlgorithm
+已知实现    配置标识 详细说明 全限定类名     ROUND_ROBIN 基于轮询的负载均衡算法 org.apache.shardingsphere.infra.algorithm.loadbalancer.round.robin.RoundRobinLoadBalanceAlgorithm   RANDOM 基于随机的负载均衡算法 org.apache.shardingsphere.infra.algorithm.loadbalancer.random.RandomLoadBalanceAlgorithm   WEIGHT 基于权重的负载均衡算法 org.apache.shardingsphere.infra.algorithm.loadbalancer.weight.WeightLoadBalanceAlgorithm    KeyGenerateAlgorithm 全限定类名 org.apache.shardingsphere.keygen.core.algorithm.KeyGenerateAlgorithm
 定义 分布式主键生成算法，可以使用在数据分片功能中。
 已知实现    配置标识 详细说明 全限定类名     SNOWFLAKE 基于雪花算法的分布式主键生成算法 org.apache.shardingsphere.keygen.snowflake.algorithm.SnowflakeKeyGenerateAlgorithm   UUID 基于 UUID 的分布式主键生成算法 org.apache.shardingsphere.keygen.uuid.algorithm.UUIDKeyGenerateAlgorithm    </description>
     </item>
