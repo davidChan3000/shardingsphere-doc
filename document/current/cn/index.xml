@@ -1580,7 +1580,9 @@ transaction: defaultType: BASE providerType: Seata 搭建 Seata Server，添加�
 定义 负载均衡算法，可以使用在读写分离、JDBC 双路由等功能中。
 已知实现    配置标识 详细说明 全限定类名     ROUND_ROBIN 基于轮询的负载均衡算法 org.apache.shardingsphere.infra.algorithm.loadbalancer.round.robin.RoundRobinLoadBalanceAlgorithm   RANDOM 基于随机的负载均衡算法 org.apache.shardingsphere.infra.algorithm.loadbalancer.random.RandomLoadBalanceAlgorithm   WEIGHT 基于权重的负载均衡算法 org.apache.shardingsphere.infra.algorithm.loadbalancer.weight.WeightLoadBalanceAlgorithm    KeyGenerateAlgorithm 全限定类名 org.apache.shardingsphere.keygen.core.algorithm.KeyGenerateAlgorithm
 定义 分布式主键生成算法，可以使用在数据分片功能中。
-已知实现    配置标识 详细说明 全限定类名     SNOWFLAKE 基于雪花算法的分布式主键生成算法 org.apache.shardingsphere.keygen.snowflake.algorithm.SnowflakeKeyGenerateAlgorithm   UUID 基于 UUID 的分布式主键生成算法 org.apache.shardingsphere.keygen.uuid.algorithm.UUIDKeyGenerateAlgorithm    </description>
+已知实现    配置标识 详细说明 全限定类名     SNOWFLAKE 基于雪花算法的分布式主键生成算法 org.apache.shardingsphere.keygen.snowflake.algorithm.SnowflakeKeyGenerateAlgorithm   UUID 基于 UUID 的分布式主键生成算法 org.apache.shardingsphere.keygen.uuid.algorithm.UUIDKeyGenerateAlgorithm    MessageDigestAlgorithm 全限定类名 org.apache.shardingsphere.infra.algorithm.messagedigest.core.MessageDigestAlgorithm
+定义 消息摘要算法，可以使用在数据脱敏、数据加密功能中。
+已知实现    配置标识 详细说明 全限定类名     MD5 MD5 消息摘要算法 org.</description>
     </item>
     
     <item>
