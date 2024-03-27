@@ -1,30 +1,42 @@
-commit 95d53273a5ca5f3cc4a0803df0f507d2f53c9dd4
+commit 2d92ad3ba6cf81515bffaffb83cfb56d1e8532ed
 Author: Liang Zhang <zhangliang@apache.org>
-Date:   Tue Mar 26 22:52:47 2024 +0800
+Date:   Wed Mar 27 23:38:49 2024 +0800
 
-    Remove MissingRequiredShadowAlgorithmException (#30661)
+    Remove not existed exception in docs (#30676)
 
 diff --git a/docs/document/content/user-manual/error-code/sql-error-code.cn.md b/docs/document/content/user-manual/error-code/sql-error-code.cn.md
-index 6618eb90a3a..7e261cdfdbd 100644
+index e1c7f8eb730..b69e962821d 100644
 --- a/docs/document/content/user-manual/error-code/sql-error-code.cn.md
 +++ b/docs/document/content/user-manual/error-code/sql-error-code.cn.md
-@@ -273,7 +273,6 @@ SQL 错误码以标准的 SQL State，Vendor Code 和详细错误信息提供，
+@@ -84,13 +84,6 @@ SQL 错误码以标准的 SQL State，Vendor Code 和详细错误信息提供，
+ | 25000     | 14301       | ShardingSphere Seata-AT transaction has been disabled.                             |
+ | 25000     | 14302       | Please config application id within seata.conf file.                               |
  
- | SQL State | Vendor Code | 错误信息                                                                                              |
- |-----------|-------------|---------------------------------------------------------------------------------------------------|
--| 44000     | 20800       | \`%s\` algorithm does not exist in database \`%s\`.                                               |
- | 44000     | 20801       | \`%s\` configuration does not exist in database \`%s\`.                                           |
- | 44000     | 20802       | No available shadow data sources mappings in shadow table \`%s\`.                                 |
- | 44000     | 20803       | Column shadow algorithm \`%s\` operation only supports one column mapping in shadow table \`%s\`. |
+-### 锁
+-
+-| SQL State | Vendor Code | 错误信息                                                                                 |
+-|-----------|-------------|--------------------------------------------------------------------------------------|
+-| HY000     | 15000       | The table \`%s\` of schema \`%s\` is locked.                                         |
+-| HY000     | 15001       | The table \`%s\` of schema \`%s\` lock wait timeout of \`%s\` milliseconds exceeded. |
+-
+ ### 审计
+ 
+ | SQL State | Vendor Code | 错误信息                                 |
 diff --git a/docs/document/content/user-manual/error-code/sql-error-code.en.md b/docs/document/content/user-manual/error-code/sql-error-code.en.md
-index 4986a37ef17..14be811ad69 100644
+index 75226ea5904..318ad0dc02e 100644
 --- a/docs/document/content/user-manual/error-code/sql-error-code.en.md
 +++ b/docs/document/content/user-manual/error-code/sql-error-code.en.md
-@@ -288,7 +288,6 @@ SQL error codes provide by standard `SQL State`, `Vendor Code` and `Reason`, whi
+@@ -84,13 +84,6 @@ SQL error codes provide by standard `SQL State`, `Vendor Code` and `Reason`, whi
+ | 25000     | 14301       | ShardingSphere Seata-AT transaction has been disabled.                             |
+ | 25000     | 14302       | Please config application id within seata.conf file.                               |
  
- | SQL State | Vendor Code | Reason                                                                                            |
- |-----------|-------------|---------------------------------------------------------------------------------------------------|
--| 44000     | 20800       | \`%s\` algorithm does not exist in database \`%s\`.                                               |
- | 44000     | 20801       | \`%s\` configuration does not exist in database \`%s\`.                                           |
- | 44000     | 20802       | No available shadow data sources mappings in shadow table \`%s\`.                                 |
- | 44000     | 20803       | Column shadow algorithm \`%s\` operation only supports one column mapping in shadow table \`%s\`. |
+-### Lock
+-
+-| SQL State | Vendor Code | Reason                                                                               |
+-|-----------|-------------|--------------------------------------------------------------------------------------|
+-| HY000     | 15000       | The table \`%s\` of schema \`%s\` is locked.                                         |
+-| HY000     | 15001       | The table \`%s\` of schema \`%s\` lock wait timeout of \`%s\` milliseconds exceeded. |
+-
+ ### Audit
+ 
+ | SQL State | Vendor Code | Reason                               |
