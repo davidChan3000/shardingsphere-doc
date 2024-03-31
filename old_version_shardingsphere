@@ -1,34 +1,36 @@
-commit f6d5ec1c45cb53d9b6cf9b30d4a498a7595e2560
+commit aa194284b5847251f2e342ef7c049f41f899ae97
 Author: Liang Zhang <zhangliang@apache.org>
-Date:   Sun Mar 31 13:21:46 2024 +0800
+Date:   Sun Mar 31 14:58:32 2024 +0800
 
-    Add AlterStorageUnitConnectionInfoException (#30709)
+    Refactor StorageUnitsOperateException (#30711)
     
-    * Adjust error message of ResourceDefinitionException and RuleDefinitionException
+    * Refactor StorageUnitsOperateException
     
-    * Add AlterStorageUnitConnectionInfoException
+    * Refactor StorageUnitsOperateException
 
 diff --git a/docs/document/content/user-manual/error-code/sql-error-code.cn.md b/docs/document/content/user-manual/error-code/sql-error-code.cn.md
-index 1dee32a4407..ab655a94c6c 100644
+index c037cca8a0d..9af97e61db2 100644
 --- a/docs/document/content/user-manual/error-code/sql-error-code.cn.md
 +++ b/docs/document/content/user-manual/error-code/sql-error-code.cn.md
-@@ -34,6 +34,7 @@ SQL 错误码以标准的 SQL State，Vendor Code 和详细错误信息提供，
- | 44000     | 10105       | Invalid storage unit status, error message is: %s.                             |
- | 44000     | 10106       | Read storage unit '%s' does not exist in rule '%s'.                            |
- | 42000     | 10107       | There is no storage unit in database '%s'.                                     |
-+| 0A000     | 10108       | Can not alter connection info in storage units: '%s'.                          |
- | 44000     | 10200       | Invalid '%s' rule '%s', error message is: %s                                   |
- | 44000     | 10201       | %s rules '%s' do not exist in database '%s'.                                   |
- | 44000     | 10202       | %s rules '%s' in database '%s' are still in used.                              |
+@@ -26,7 +26,7 @@ SQL 错误码以标准的 SQL State，Vendor Code 和详细错误信息提供，
+ | HY000     | 10022       | Can not load table with database name \`%s\` and data source name \`%s\`.      |
+ | 0A000     | 10030       | Can not drop schema \`%s\` because of contains tables.                         |
+ | 0A000     | 10040       | Unsupported storage type of \`%s.%s\`.                                         |
+-| 44000     | 10100       | Can not process invalid storage units, error messages is: %s                   |
++| 44000     | 10100       | Can not %s storage units '%s'.                                                 |
+ | 44000     | 10101       | Storage units '%s' do not exist in database '%s'.                              |
+ | 44000     | 10102       | There is no storage unit in the database '%s'.                                 |
+ | 44000     | 10103       | Storage unit '%s' still used by '%s'.                                          |
 diff --git a/docs/document/content/user-manual/error-code/sql-error-code.en.md b/docs/document/content/user-manual/error-code/sql-error-code.en.md
-index 313314aad31..80d5c32fe9f 100644
+index 8352ea8869b..14adc58967e 100644
 --- a/docs/document/content/user-manual/error-code/sql-error-code.en.md
 +++ b/docs/document/content/user-manual/error-code/sql-error-code.en.md
-@@ -20,6 +20,7 @@ SQL error codes provide by standard `SQL State`, `Vendor Code` and `Reason`, whi
- | HY000     | 10005       | Column '%s' in %s is ambiguous.                                                |
- | 42S02     | 10006       | Unknown column '%s' in '%s'.                                                   |
- | 42S02     | 10007       | Table or view \`%s\` does not exist.                                           |
-+| 0A000     | 10108       | Can not alter connection info in storage units: '%s'.                          |
- | 42000     | 10010       | Rule does not exist.                                                           |
- | 44000     | 10011       | Algorithm '%s.'%s' initialization failed, reason is: %s.                       |
- | 44000     | 10012       | '%s' algorithm on %s is required.                                              |
+@@ -26,7 +26,7 @@ SQL error codes provide by standard `SQL State`, `Vendor Code` and `Reason`, whi
+ | HY000     | 10022       | Can not load table with database name \`%s\` and data source name \`%s\`.      |
+ | 0A000     | 10030       | Can not drop schema \`%s\` because of contains tables.                         |
+ | 0A000     | 10040       | Unsupported storage type of \`%s.%s\`.                                         |
+-| 44000     | 10100       | Can not process invalid storage units, error messages is: %s                   |
++| 44000     | 10100       | Can not %s storage units '%s'.                                                 |
+ | 44000     | 10101       | Storage units '%s' do not exist in database '%s'.                              |
+ | 44000     | 10102       | There is no storage unit in the database '%s'.                                 |
+ | 44000     | 10103       | Storage unit '%s' still used by '%s'.                                          |
