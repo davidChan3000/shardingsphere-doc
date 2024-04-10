@@ -1,46 +1,52 @@
-commit 4a65262bcb254431ff98728769fb2967472cef32
+commit 1b32001173d48f751b7d26f4a8515be6eb9c14ff
 Author: Liang Zhang <zhangliang@apache.org>
-Date:   Wed Apr 10 23:24:06 2024 +0800
+Date:   Thu Apr 11 00:23:07 2024 +0800
 
-    Refactor InvalidInlineExpressionDataSourcesException (#30841)
+    Update error codes docs for encrypt (#30843)
+    
+    * Update error codes docs for encrypt
+    
+    * Update error codes docs for encrypt
 
 diff --git a/docs/document/content/user-manual/error-code/sql-error-code.cn.md b/docs/document/content/user-manual/error-code/sql-error-code.cn.md
-index 1f3d6100411..9ac5e94e3fa 100644
+index c6f84eed81f..00f0255647e 100644
 --- a/docs/document/content/user-manual/error-code/sql-error-code.cn.md
 +++ b/docs/document/content/user-manual/error-code/sql-error-code.cn.md
-@@ -192,14 +192,12 @@ SQL 错误码以标准的 SQL State，Vendor Code 和详细错误信息提供，
+@@ -219,14 +219,12 @@ SQL 错误码以标准的 SQL State，Vendor Code 和详细错误信息提供，
+ | 21000       | 44000     | Can not find logic encrypt column by \`%s\`.                                                       |
+ | 21001       | 44000     | Fail to find encrypt column \`%s\` from table \`%s\`.                                              |
+ | 21002       | 44000     | Altered column \`%s\` must use same encrypt algorithm with previous column \`%s\` in table \`%s\`. |
+-| 21040       | 42000     | Insert value of index \`%s\` can not support for encrypt.                                          |
+-| 21041       | 0A000     | The SQL clause \`%s\` is unsupported in encrypt rule.                                              |
+-| 21081       | HY004     | \`%s\` column's encryptor name \`%s\` does not match encrypt algorithm type \`%s\`.                |
+ | 21003       | 44000     | Cipher column of \`%s\` can not be null in database \`%s\`.                                        |
+-| 21004       | 44000     | Can not find (STANDARD\|ASSIST_QUERY\|LIKE_QUERY) encryptor in table \`%s\` and column \`%s\`.     |
+ | 21005       | 44000     | Assisted query column of \`%s\` can not be null in database \`%s\`.                                |
+ | 21007       | 44000     | Like query column of \`%s\` can not be null in database \`%s\`.                                    |
+ | 21009       | 44000     | Can not find encrypt table: \`%s\`.                                                                |
++| 21041       | 0A000     | The SQL clause \`%s\` is unsupported in encrypt rule.                                              |
++| 21081       | HY004     | \`%s\` column's encryptor name \`%s\` does not match encrypt algorithm type \`%s\`.                |
  
- | Vendor Code | SQL State | 错误信息                                                               |
- |-------------|-----------|--------------------------------------------------------------------|
--| 20270       | 44000     | Inline expression %s names size error.                             |
--| 20280       | HY004     | Invalid read database weight \`%s\`.                               |
-+| 20270       | 44000     | %s data source names size error on inline expression.              |
- | 20290       | 44000     | Data source name is required in database \`%s\.`                   |
- | 20291       | 44000     | Write data source name is required in database `\`%s\.`            |
- | 20292       | 44000     | Read data source names is required in database `\`%s\.`            |
- | 20293       | 44000     | Can not config duplicate %s data source \`%s\` in database \`%s\.` |
- | 20294       | 42S02     | %s data source name \`%s\` not in database \`%s\.`                 |
--| 20295       | 44000     | Auto aware data source name is required in database \`%s\.`        |
- | 20296       | 44000     | Read storage unit '%s' does not exist in rule '%s'.                |
+ ### 影子库
  
- ### SQL 方言转换
 diff --git a/docs/document/content/user-manual/error-code/sql-error-code.en.md b/docs/document/content/user-manual/error-code/sql-error-code.en.md
-index 6c14bd9067e..1f30d8cc1d5 100644
+index dc36ecfa2ee..3d7fd00e791 100644
 --- a/docs/document/content/user-manual/error-code/sql-error-code.en.md
 +++ b/docs/document/content/user-manual/error-code/sql-error-code.en.md
-@@ -193,14 +193,12 @@ SQL error codes provide by standard `SQL State`, `Vendor Code` and `Reason`, whi
+@@ -220,14 +220,12 @@ SQL error codes provide by standard `SQL State`, `Vendor Code` and `Reason`, whi
+ | 21000       | 44000     | Can not find logic encrypt column by \`%s\`.                                                       |
+ | 21001       | 44000     | Fail to find encrypt column \`%s\` from table \`%s\`.                                              |
+ | 21002       | 44000     | Altered column \`%s\` must use same encrypt algorithm with previous column \`%s\` in table \`%s\`. |
+-| 21040       | 42000     | Insert value of index \`%s\` can not support for encrypt.                                          |
+-| 21041       | 0A000     | The SQL clause \`%s\` is unsupported in encrypt rule.                                              |
+-| 21081       | HY004     | \`%s\` column's encryptor name \`%s\` does not match encrypt algorithm type \`%s\`.                |
+ | 21003       | 44000     | Cipher column of \`%s\` can not be null in database \`%s\`.                                        |
+-| 21004       | 44000     | Can not find (STANDARD\|ASSIST_QUERY\|LIKE_QUERY) encryptor in table \`%s\` and column \`%s\`.     |
+ | 21005       | 44000     | Assisted query column of \`%s\` can not be null in database \`%s\`.                                |
+ | 21007       | 44000     | Like query column of \`%s\` can not be null in database \`%s\`.                                    |
+ | 21009       | 44000     | Can not find encrypt table: \`%s\`.                                                                |
++| 21041       | 0A000     | The SQL clause \`%s\` is unsupported in encrypt rule.                                              |
++| 21081       | HY004     | \`%s\` column's encryptor name \`%s\` does not match encrypt algorithm type \`%s\`.                |
  
- | Vendor Code | SQL State | Reason                                                             |
- |-------------|-----------|--------------------------------------------------------------------|
--| 20270       | 44000     | Inline expression %s names size error.                             |
--| 20280       | HY004     | Invalid read database weight \`%s\`.                               |
-+| 20270       | 44000     | %s data source names size error on inline expression.              |
- | 20290       | 44000     | Data source name is required in database \`%s\.`                   |
- | 20291       | 44000     | Write data source name is required in database `\`%s\.`            |
- | 20292       | 44000     | Read data source names is required in database `\`%s\.`            |
- | 20293       | 44000     | Can not config duplicate %s data source \`%s\` in database \`%s\.` |
- | 20294       | 42S02     | %s data source name \`%s\` not in database \`%s\.`                 |
--| 20295       | 44000     | Auto aware data source name is required in database \`%s\.`        |
- | 20296       | 44000     | Read storage unit '%s' does not exist in rule '%s'.                |
+ ### Shadow Database
  
- ### SQL Dialect Translator
