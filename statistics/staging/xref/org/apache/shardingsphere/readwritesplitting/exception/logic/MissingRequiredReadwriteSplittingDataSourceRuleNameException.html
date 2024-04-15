@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<title>DataSourceNameNotExistedException xref</title>
-<link type="text/css" rel="stylesheet" href="../../../../../stylesheet.css" />
+<title>MissingRequiredReadwriteSplittingDataSourceRuleNameException xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../../../../../apidocs/org/apache/shardingsphere/readwritesplitting/exception/DataSourceNameNotExistedException.html">View Javadoc</a></div><pre>
+<div id="overview"><a href="../../../../../../../apidocs/org/apache/shardingsphere/readwritesplitting/exception/logic/MissingRequiredReadwriteSplittingDataSourceRuleNameException.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Licensed to the Apache Software Foundation (ASF) under one or more</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * contributor license agreements.  See the NOTICE file distributed with</em>
@@ -23,20 +23,20 @@
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_comment"> * limitations under the License.</em>
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">package</strong> org.apache.shardingsphere.readwritesplitting.exception;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">package</strong> org.apache.shardingsphere.readwritesplitting.exception.logic;
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> org.apache.shardingsphere.infra.exception.core.external.sql.sqlstate.XOpenSQLState;
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.apache.shardingsphere.readwritesplitting.constant.ReadwriteSplittingDataSourceType;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.apache.shardingsphere.readwritesplitting.exception.ReadwriteSplittingSQLException;
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment"> * Data source name not existed exception.</em>
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment"> * Missing required readwrite-splitting data source rule name exception.</em>
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="DataSourceNameNotExistedException" href="../../../../../org/apache/shardingsphere/readwritesplitting/exception/DataSourceNameNotExistedException.html#DataSourceNameNotExistedException">DataSourceNameNotExistedException</a> <strong class="jxr_keyword">extends</strong> <a name="ReadwriteSplittingSQLException" href="../../../../../org/apache/shardingsphere/readwritesplitting/exception/ReadwriteSplittingSQLException.html#ReadwriteSplittingSQLException">ReadwriteSplittingSQLException</a> {
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="MissingRequiredReadwriteSplittingDataSourceRuleNameException" href="../../../../../../org/apache/shardingsphere/readwritesplitting/exception/logic/MissingRequiredReadwriteSplittingDataSourceRuleNameException.html#MissingRequiredReadwriteSplittingDataSourceRuleNameException">MissingRequiredReadwriteSplittingDataSourceRuleNameException</a> <strong class="jxr_keyword">extends</strong> <a name="ReadwriteSplittingSQLException" href="../../../../../../org/apache/shardingsphere/readwritesplitting/exception/ReadwriteSplittingSQLException.html#ReadwriteSplittingSQLException">ReadwriteSplittingSQLException</a> {
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>      
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">long</strong> serialVersionUID = 1284608200400804784L;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">long</strong> serialVersionUID = 8006957930250488016L;
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>      
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>      <strong class="jxr_keyword">public</strong> <a name="DataSourceNameNotExistedException" href="../../../../../org/apache/shardingsphere/readwritesplitting/exception/DataSourceNameNotExistedException.html#DataSourceNameNotExistedException">DataSourceNameNotExistedException</a>(<strong class="jxr_keyword">final</strong> <a name="ReadwriteSplittingDataSourceType" href="../../../../../org/apache/shardingsphere/readwritesplitting/constant/ReadwriteSplittingDataSourceType.html#ReadwriteSplittingDataSourceType">ReadwriteSplittingDataSourceType</a> dataSourceType, <strong class="jxr_keyword">final</strong> String dataSourceName, <strong class="jxr_keyword">final</strong> String databaseName) {
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>          <strong class="jxr_keyword">super</strong>(XOpenSQLState.NOT_FOUND, 4, <span class="jxr_string">"%s data source name '%s' not in database '%s'."</span>, dataSourceType, dataSourceName, databaseName);
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>      <strong class="jxr_keyword">public</strong> <a name="MissingRequiredReadwriteSplittingDataSourceRuleNameException" href="../../../../../../org/apache/shardingsphere/readwritesplitting/exception/logic/MissingRequiredReadwriteSplittingDataSourceRuleNameException.html#MissingRequiredReadwriteSplittingDataSourceRuleNameException">MissingRequiredReadwriteSplittingDataSourceRuleNameException</a>(<strong class="jxr_keyword">final</strong> String databaseName) {
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>          <strong class="jxr_keyword">super</strong>(XOpenSQLState.NOT_FOUND, 0, <span class="jxr_string">"Readwrite-splitting data source rule name is required in database '%s'."</span>, databaseName);
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>      }
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  }
 </pre>
