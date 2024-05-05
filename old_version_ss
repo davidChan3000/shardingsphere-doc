@@ -1,74 +1,28 @@
-commit 1bb1b3416941145f68fd79301f85598abe72dcd6
-Author: 孙念君 Nianjun Sun <sunnianjun@apache.org>
-Date:   Tue Apr 30 19:10:45 2024 +0800
+commit 37b583277f753bb2ad441fc687ef927b27eb65b9
+Author: LJ <97254796+DIDA-lJ@users.noreply.github.com>
+Date:   Sun May 5 11:36:12 2024 +0800
 
-    Merge 5.5.0 release to master (#31075)
-    
-    * Change example project version to 5.5.0 for release (#30907)
-    
-    * Update release note for 5.5.0 (#30909)
-    
-    * Update release note for 5.5.0
-    
-    * Update verison
-    
-    * Fix table meta data not update when use refresh table metadata (#30913) (#30914)
-    
-    * Update README and downloads link for release (#30915)
-    
-    * Update the year in NOTICE from 2023 to 2024
-    
-    * [maven-release-plugin] prepare release 5.5.0
-    
-    * [maven-release-plugin] prepare for next development iteration
-    
-    * Update revision to 5.5.1-SNAPSHOT in example
-    
-    ---------
-    
-    Co-authored-by: zhaojinchao <zhaojinchao@apache.org>
+    Optimize docs (#31115)
 
-diff --git a/docs/document/content/downloads/_index.cn.md b/docs/document/content/downloads/_index.cn.md
-index 690fa02d1cc..b84d534df7d 100644
---- a/docs/document/content/downloads/_index.cn.md
-+++ b/docs/document/content/downloads/_index.cn.md
-@@ -11,12 +11,12 @@ extracss = true
- Apache ShardingSphere 的发布版包括源码包及其对应的二进制包。
- 由于下载内容分布在镜像服务器上，所以下载后应该进行 GPG 或 SHA-512 校验，以此来保证内容没有被篡改。
+diff --git a/docs/blog/content/material/ElasticJob.cn.md b/docs/blog/content/material/ElasticJob.cn.md
+index 4e34e721ac9..39741e4b710 100644
+--- a/docs/blog/content/material/ElasticJob.cn.md
++++ b/docs/blog/content/material/ElasticJob.cn.md
+@@ -5,13 +5,13 @@ weight = 12
+ chapter = true
+ +++
  
--##### Apache ShardingSphere - 版本: 5.4.1 ( 发布日期: October 18th, 2023 )
-+##### Apache ShardingSphere - 版本: 5.5.0 ( 发布日期: April 23rd, 2024 )
+-[ElasticJob](https://github.com/elasticjob)是一个分布式调度解决方案，提供分布式任务的分片，弹性伸缩，全自动发现，基于时间驱动、数据驱动、常驻任务和临时任务的多任务类型，任务聚合和动态调配资源，故障检测、自动修复，失效转移和重试，完善的运维平台和管理工具，以及对云原生的良好支持等功能特性，可以全面满足企业对于任务管理和批量作业的调度处理能力。
++[ElasticJob](https://github.com/elasticjob) 是一个分布式调度解决方案，提供分布式任务的分片，弹性伸缩，全自动发现，基于时间驱动、数据驱动、常驻任务和临时任务的多任务类型，任务聚合和动态调配资源，故障检测、自动修复，失效转移和重试，完善的运维平台和管理工具，以及对云原生的良好支持等功能特性，可以全面满足企业对于任务管理和批量作业的调度处理能力。
  
--- 源码: [<u>SRC</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-src.zip) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-src.zip.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-src.zip.sha512) )
--- ShardingSphere-JDBC 二进制包: [<u>TAR</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-jdbc-bin.tar.gz) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-jdbc-bin.tar.gz.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-jdbc-bin.tar.gz.sha512) )
--- ShardingSphere-Proxy 二进制包: [<u>TAR</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-proxy-bin.tar.gz) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-proxy-bin.tar.gz.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-proxy-bin.tar.gz.sha512) )
--- ShardingSphere-Agent 二进制包: [<u>TAR</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-agent-bin.tar.gz) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-agent-bin.tar.gz.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-agent-bin.tar.gz.sha512) )
-+- 源码: [<u>SRC</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-src.zip) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-src.zip.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-src.zip.sha512) )
-+- ShardingSphere-JDBC 二进制包: [<u>TAR</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-jdbc-bin.tar.gz) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-jdbc-bin.tar.gz.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-jdbc-bin.tar.gz.sha512) )
-+- ShardingSphere-Proxy 二进制包: [<u>TAR</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-proxy-bin.tar.gz) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-proxy-bin.tar.gz.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-proxy-bin.tar.gz.sha512) )
-+- ShardingSphere-Agent 二进制包: [<u>TAR</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-agent-bin.tar.gz) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-agent-bin.tar.gz.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-agent-bin.tar.gz.sha512) )
+-ElasticJob自2014年底开源以来，经历了5年多的发展，以其功能的丰富性，文档的全面性，代码的高质量，框架的易用性，积累了大量的忠实用户和良好的业内口碑（5.8K star），一直也是分布式调度框架领域最受大家欢迎的项目之一。
++ElasticJob 自2014年底开源以来，经历了5年多的发展，以其功能的丰富性，文档的全面性，代码的高质量，框架的易用性，积累了大量的忠实用户和良好的业内口碑（5.8K star），一直也是分布式调度框架领域最受大家欢迎的项目之一。
  
- ## 全部版本
+-近两年来，由于核心开发者全力发展和维护Apache ShardingSphere项目等原因，ElasticJob放缓了发展的脚步。但是随着Apache ShardingSphere项目在分布式领域的不断拓展，以及用户对于多数据集群环境的分布式管理和数据迁移的弹性扩容等功能，需要一个强大的分布式调度组件。由此为契机，Apache ShardingSphere社区已经计划发起提议将ElasticJob作为其子项目进行长期持续的更新和维护。
++近两年来，由于核心开发者全力发展和维护 Apache ShardingSphere 项目等原因，ElasticJob 放缓了发展的脚步。但是随着 Apache ShardingSphere 项目在分布式领域的不断拓展，以及用户对于多数据集群环境的分布式管理和数据迁移的弹性扩容等功能，需要一个强大的分布式调度组件。由此为契机，Apache ShardingSphere 社区已经计划发起提议将 ElasticJob 作为其子项目进行长期持续的更新和维护。
  
-diff --git a/docs/document/content/downloads/_index.en.md b/docs/document/content/downloads/_index.en.md
-index 6421814e4bf..90a3959ce7e 100644
---- a/docs/document/content/downloads/_index.en.md
-+++ b/docs/document/content/downloads/_index.en.md
-@@ -11,12 +11,12 @@ extracss = true
- Apache ShardingSphere is released as source code tarballs with corresponding binary tarballs for convenience.
- The downloads are distributed via mirror sites and should be checked for tampering using GPG or SHA-512.
+-我们第一时间将此好消息公开，后续将带来更多关于ElasticJob的相关资讯。
++我们第一时间将此好消息公开，后续将带来更多关于 ElasticJob 的相关资讯。
  
--##### Apache ShardingSphere - Version: 5.4.1 ( Release Date: October 18th, 2023 )
-+##### Apache ShardingSphere - Version: 5.5.0 ( Release Date: April 23rd, 2024 )
- 
--- Source Codes: [<u>SRC</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-src.zip) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-src.zip.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-src.zip.sha512) )
--- ShardingSphere-JDBC Binary Distribution: [<u>TAR</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-jdbc-bin.tar.gz) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-jdbc-bin.tar.gz.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-jdbc-bin.tar.gz.sha512) )
--- ShardingSphere-Proxy Binary Distribution: [<u>TAR</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-proxy-bin.tar.gz) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-proxy-bin.tar.gz.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-proxy-bin.tar.gz.sha512) )
--- ShardingSphere-Agent Binary Distribution: [<u>TAR</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-agent-bin.tar.gz) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-agent-bin.tar.gz.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.4.1/apache-shardingsphere-5.4.1-shardingsphere-agent-bin.tar.gz.sha512) )
-+- Source Codes: [<u>SRC</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-src.zip) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-src.zip.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-src.zip.sha512) )
-+- ShardingSphere-JDBC Binary Distribution: [<u>TAR</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-jdbc-bin.tar.gz) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-jdbc-bin.tar.gz.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-jdbc-bin.tar.gz.sha512) )
-+- ShardingSphere-Proxy Binary Distribution: [<u>TAR</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-proxy-bin.tar.gz) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-proxy-bin.tar.gz.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-proxy-bin.tar.gz.sha512) )
-+- ShardingSphere-Agent Binary Distribution: [<u>TAR</u>](https://www.apache.org/dyn/closer.lua/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-agent-bin.tar.gz) ( [<u>ASC</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-agent-bin.tar.gz.asc), [<u>SHA512</u>](https://downloads.apache.org/shardingsphere/5.5.0/apache-shardingsphere-5.5.0-shardingsphere-agent-bin.tar.gz.sha512) )
- 
- ## All Releases
- 
+ > 讨论邮件：
+ https://lists.apache.org/thread.html/rd6171e2065be6bcfbeb7aba7e5c876eeed04db585c6ab78fc03a581c%40%3Cdev.shardingsphere.apache.org%3E
