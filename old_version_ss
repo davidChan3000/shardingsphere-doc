@@ -1,32 +1,32 @@
-commit 3ef7a940b035586408d338a69ae23b094e3809db
-Author: LJ <97254796+DIDA-lJ@users.noreply.github.com>
-Date:   Mon May 6 12:14:29 2024 +0800
+commit 9a48a1b54efda2b2d4f810710101d59335f4c1ba
+Author: Liang Zhang <zhangliang@apache.org>
+Date:   Mon May 6 12:22:51 2024 +0800
 
-    Update _index.cn.md (#31127)
+    Revert "Update _index.cn.md (#31127)" (#31130)
     
-    Update _index.cn.md ：Chinese document link redirection error modified，corresponding to the Chinese part of issue #31126 error.
+    This reverts commit 3ef7a940b035586408d338a69ae23b094e3809db.
 
 diff --git a/docs/community/content/involved/_index.cn.md b/docs/community/content/involved/_index.cn.md
-index 3bde9d31b58..652b741f7cf 100644
+index 652b741f7cf..3bde9d31b58 100644
 --- a/docs/community/content/involved/_index.cn.md
 +++ b/docs/community/content/involved/_index.cn.md
 @@ -7,14 +7,14 @@ chapter = true
  
  Apache ShardingSphere 是一个开放且活跃的社区，非常欢迎高质量的参与者与我们共建开源之路。
  
--您可以从[订阅官方邮件列表](/cn/involved/subscribe/)开始参与社区。
-+您可以从[订阅官方邮件列表](/docs/community/content/involved/subscribe.cn.md)开始参与社区。
+-您可以从[订阅官方邮件列表](/docs/community/content/involved/subscribe.cn.md)开始参与社区。
++您可以从[订阅官方邮件列表](/cn/involved/subscribe/)开始参与社区。
  
--如果您想参与 Apache ShardingSphere 的贡献，请先阅读[贡献指南](/cn/involved/contribute/)。
-+如果您想参与 Apache ShardingSphere 的贡献，请先阅读[贡献指南](/docs/community/content/involved/contribute/_index.cn.md)。
+-如果您想参与 Apache ShardingSphere 的贡献，请先阅读[贡献指南](/docs/community/content/involved/contribute/_index.cn.md)。
++如果您想参与 Apache ShardingSphere 的贡献，请先阅读[贡献指南](/cn/involved/contribute/)。
  
--在成为一个贡献者之前，请您阅读[贡献规范](/cn/involved/conduct/)。
-+在成为一个贡献者之前，请您阅读[贡献规范](/docs/community/content/involved/conduct/code.cn.md)。
+-在成为一个贡献者之前，请您阅读[贡献规范](/docs/community/content/involved/conduct/code.cn.md)。
++在成为一个贡献者之前，请您阅读[贡献规范](/cn/involved/conduct/)。
  
--如果您想成为官方提交者，请您阅读[提交者指南](/cn/involved/committer/)。
-+如果您想成为官方提交者，请您阅读[提交者指南](/docs/community/content/involved/committer/_index.cn.md)。
+-如果您想成为官方提交者，请您阅读[提交者指南](/docs/community/content/involved/committer/_index.cn.md)。
++如果您想成为官方提交者，请您阅读[提交者指南](/cn/involved/committer/)。
  
--如果您想成为官方版本发布经理，请您阅读[发布指南](/cn/involved/release/)。
-+如果您想成为官方版本发布经理，请您阅读[发布指南](/docs/community/content/involved/release/_index.cn.md)。
+-如果您想成为官方版本发布经理，请您阅读[发布指南](/docs/community/content/involved/release/_index.cn.md)。
++如果您想成为官方版本发布经理，请您阅读[发布指南](/cn/involved/release/)。
  
  感谢您关注 Apache ShardingSphere。
