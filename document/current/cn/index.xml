@@ -1048,7 +1048,7 @@ LOCAL 事务 不支持项  不支持因网络、硬件异常导致的跨库事�
       
       <guid>https://shardingsphere.apache.org/document/current/cn/user-manual/shardingsphere-jdbc/java-api/rules/broadcast/</guid>
       <description>广播表 Java API 规则配置允许用户直接通过编写 Java 代码的方式，完成 ShardingSphereDataSource 对象的创建，Java API 的配置方式非常灵活，不需要依赖额外的 jar 包就能够集成各种类型的业务系统。
-参数解释 类名称：org.apache.shardingsphere.broadcast.api.config.BroadcastRuleConfiguration
+参数解释 类名称：org.apache.shardingsphere.broadcast.config.BroadcastRuleConfiguration
 可配置属性：
    名称 数据类型 说明 默认值     tables (+) Collection&amp;lt;String&amp;gt; 广播表规则配置     配置示例 广播表 Java API 配置示例如下：
 public final class ShardingDatabasesAndTablesConfigurationPrecise { @Override public DataSource getDataSource() throws SQLException { return ShardingSphereDataSourceFactory.createDataSource(createDataSourceMap(), Arrays.asList(createBroadcastRuleConfiguration()), new Properties()); } private Map&amp;lt;String, DataSource&amp;gt; createDataSourceMap() { Map&amp;lt;String, DataSource&amp;gt; result = new HashMap&amp;lt;&amp;gt;(); result.put(&amp;#34;demo_ds_0&amp;#34;, DataSourceUtil.createDataSource(&amp;#34;demo_ds_0&amp;#34;)); result.</description>
@@ -2268,7 +2268,7 @@ dataSources: unique_ds: dataSourceClassName: com.zaxxer.hikari.HikariDataSource 
       
       <guid>https://shardingsphere.apache.org/document/current/cn/user-manual/shardingsphere-jdbc/java-api/rules/sql-translator/</guid>
       <description>背景信息 通过 Java API 形式使用 SQL 翻译，可以方便得集成进入各种系统，灵活定制用户需求。
-参数解释 类名称：org.apache.shardingsphere.sqltranslator.api.config.SQLTranslatorRuleConfiguration
+参数解释 类名称：org.apache.shardingsphere.sqltranslator.config.SQLTranslatorRuleConfiguration
 可配置属性：
    名称 数据类型 说明     type String SQL 翻译器类型   useOriginalSQLWhenTranslatingFailed (?) boolean SQL 翻译失败是否使用原始 SQL 继续执行    操作步骤  配置翻译类型 type 配置 useOriginalSQLWhenTranslatingFailed 参数，是否在 SQL 翻译失败后使用原始 SQL 继续执行  配置示例 SQLTranslatorRuleConfiguration ruleConfig = new SQLTranslatorRuleConfiguration(&amp;#34;Native&amp;#34;, new Properties(), false); String translatedSQL = new SQLTranslatorRule(ruleConfig).translate(); 相关参考  YAML 配置：SQL 翻译  </description>
     </item>
@@ -2505,7 +2505,7 @@ dataSources: unique_ds: dataSourceClassName: com.zaxxer.hikari.HikariDataSource 
       
       <guid>https://shardingsphere.apache.org/document/current/cn/user-manual/shardingsphere-jdbc/java-api/rules/single/</guid>
       <description>背景信息 单表规则用于指定哪些单表需要被 ShardingSphere 管理，也可设置默认的单表数据源。
-参数解释 类名称：org.apache.shardingsphere.single.api.config.SingleRuleConfiguration
+参数解释 类名称：org.apache.shardingsphere.single.config.SingleRuleConfiguration
 可配置属性：
    名称 数据类型 说明 默认值     tables (+) Collection&amp;lt;String&amp;gt; 单表规则列表 -   defaultDataSource (?) String 单表默认数据源 -    操作步骤  初始化 SingleRuleConfiguration； 添加需要加载的单表，配置默认数据源。  配置示例 SingleRuleConfiguration ruleConfig = new SingleRuleConfiguration(); ShardingSphereDataSourceFactory.createDataSource(createDataSourceMap(), Arrays.asList(ruleConfig), new Properties()); 相关参考  单表  </description>
     </item>
@@ -2568,7 +2568,7 @@ dataSources: unique_ds: dataSourceClassName: com.zaxxer.hikari.HikariDataSource 
       
       <guid>https://shardingsphere.apache.org/document/current/cn/user-manual/shardingsphere-jdbc/java-api/rules/sql-federation/</guid>
       <description>背景信息 该功能为实验性功能，暂不适合核心系统生产环境使用。 当关联查询中的多个表分布在不同的数据库实例上时，通过开启联邦查询可以进行跨库关联查询，以及子查询。
-参数解释 类名称：org.apache.shardingsphere.sqlfederation.api.config.SQLFederationRuleConfiguration
+参数解释 类名称：org.apache.shardingsphere.sqlfederation.config.SQLFederationRuleConfiguration
 可配置属性：
    名称 数据类型 说明 默认值     sqlFederationEnabled boolean 是否开启联邦查询 -   allQueryUseSQLFederation boolean 是否全部查询 SQL 使用联邦查询 -   executionPlanCache org.apache.shardingsphere.sql.parser.api.CacheOption 执行计划缓存 -    本地缓存配置 类名称：org.apache.shardingsphere.sql.parser.api.CacheOption
 可配置属性：
