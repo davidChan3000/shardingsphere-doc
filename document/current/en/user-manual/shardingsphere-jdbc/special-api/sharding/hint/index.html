@@ -12,22 +12,22 @@
     <title>Hint :: ShardingSphere</title>
 
     
-    <link href="https://shardingsphere.apache.org/document/current/css/nucleus.css?1720946800" rel="stylesheet">
-    <link href="https://shardingsphere.apache.org/document/current/css/fontawesome-all.min.css?1720946800" rel="stylesheet">
-    <link href="https://shardingsphere.apache.org/document/current/css/hybrid.css?1720946800" rel="stylesheet">
-    <link href="https://shardingsphere.apache.org/document/current/css/featherlight.min.css?1720946800" rel="stylesheet">
-    <link href="https://shardingsphere.apache.org/document/current/css/perfect-scrollbar.min.css?1720946800" rel="stylesheet">
-    <link href="https://shardingsphere.apache.org/document/current/css/auto-complete.css?1720946800" rel="stylesheet">
-    <link href="https://shardingsphere.apache.org/document/current/css/atom-one-dark-reasonable.css?1720946800" rel="stylesheet">
-    <link href="https://shardingsphere.apache.org/document/current/css/theme.css?1720946800" rel="stylesheet">
-    <link href="https://shardingsphere.apache.org/document/current/css/tabs.css?1720946800" rel="stylesheet">
-    <link href="https://shardingsphere.apache.org/document/current/css/hugo-theme.css?1720946800" rel="stylesheet">
+    <link href="https://shardingsphere.apache.org/document/current/css/nucleus.css?1720955551" rel="stylesheet">
+    <link href="https://shardingsphere.apache.org/document/current/css/fontawesome-all.min.css?1720955551" rel="stylesheet">
+    <link href="https://shardingsphere.apache.org/document/current/css/hybrid.css?1720955551" rel="stylesheet">
+    <link href="https://shardingsphere.apache.org/document/current/css/featherlight.min.css?1720955551" rel="stylesheet">
+    <link href="https://shardingsphere.apache.org/document/current/css/perfect-scrollbar.min.css?1720955551" rel="stylesheet">
+    <link href="https://shardingsphere.apache.org/document/current/css/auto-complete.css?1720955551" rel="stylesheet">
+    <link href="https://shardingsphere.apache.org/document/current/css/atom-one-dark-reasonable.css?1720955551" rel="stylesheet">
+    <link href="https://shardingsphere.apache.org/document/current/css/theme.css?1720955551" rel="stylesheet">
+    <link href="https://shardingsphere.apache.org/document/current/css/tabs.css?1720955551" rel="stylesheet">
+    <link href="https://shardingsphere.apache.org/document/current/css/hugo-theme.css?1720955551" rel="stylesheet">
     
-    <link href="https://shardingsphere.apache.org/document/current/css/theme-white.css?1720946800" rel="stylesheet">
+    <link href="https://shardingsphere.apache.org/document/current/css/theme-white.css?1720955551" rel="stylesheet">
     
     
 
-    <script src="https://shardingsphere.apache.org/document/current/js/jquery-3.3.1.min.js?1720946800"></script>
+    <script src="https://shardingsphere.apache.org/document/current/js/jquery-3.3.1.min.js?1720955551"></script>
     
     <script>
       var _hmt = _hmt || [];
@@ -310,14 +310,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="https://shardingsphere.apache.org/document/current/js/lunr.min.js?1720946800"></script>
-<script type="text/javascript" src="https://shardingsphere.apache.org/document/current/js/auto-complete.js?1720946800"></script>
+<script type="text/javascript" src="https://shardingsphere.apache.org/document/current/js/lunr.min.js?1720955551"></script>
+<script type="text/javascript" src="https://shardingsphere.apache.org/document/current/js/auto-complete.js?1720955551"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/shardingsphere.apache.org\/document\/current\/\/en";
     
 </script>
-<script type="text/javascript" src="https://shardingsphere.apache.org/document/current/js/search.js?1720946800"></script>
+<script type="text/javascript" src="https://shardingsphere.apache.org/document/current/js/search.js?1720955551"></script>
 
       
     </div>
@@ -9286,27 +9286,44 @@
 <h2 id="sample">Sample</h2>
 <h3 id="hint-configuration">Hint Configuration</h3>
 <p>Hint algorithms require users to implement the interface of <code>org.apache.shardingsphere.api.sharding.hint.HintShardingAlgorithm</code>.
-Apache ShardingSphere will acquire sharding values from HintManager to route.</p>
+<code>org.apache.shardingsphere.sharding.api.sharding.hint.HintShardingAlgorithm</code> has two built-in implementations,</p>
+<ul>
+<li><code>org.apache.shardingsphere.sharding.algorithm.sharding.hint.HintInlineShardingAlgorithm</code></li>
+<li><code>org.apache.shardingsphere.sharding.algorithm.sharding.classbased.ClassBasedShardingAlgorithm</code></li>
+</ul>
+<p>Apache ShardingSphere will acquire sharding values from HintManager to route.</p>
 <p>Take the following configurations for reference:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">rules</span>:
-- !SHARDING
-  <span style="color:#66d9ef">tables</span>:
-    <span style="color:#66d9ef">t_order</span>:
-      <span style="color:#66d9ef">actualDataNodes</span>: demo_ds_${<span style="color:#ae81ff">0</span>..<span style="color:#ae81ff">1</span>}.t_order_${<span style="color:#ae81ff">0</span>..<span style="color:#ae81ff">1</span>}
-      <span style="color:#66d9ef">databaseStrategy</span>:
-        <span style="color:#66d9ef">hint</span>:
+  - !SHARDING
+    <span style="color:#66d9ef">tables</span>:
+      <span style="color:#66d9ef">t_order</span>:
+        <span style="color:#66d9ef">actualDataNodes</span>: demo_ds_${<span style="color:#ae81ff">0</span>..<span style="color:#ae81ff">1</span>}.t_order_${<span style="color:#ae81ff">0</span>..<span style="color:#ae81ff">1</span>}
+        <span style="color:#66d9ef">databaseStrategy</span>:
+          <span style="color:#66d9ef">hint</span>:
+            <span style="color:#66d9ef">shardingColumn</span>: order_id
+            <span style="color:#66d9ef">shardingAlgorithmName</span>: hint_class_based
+        <span style="color:#66d9ef">tableStrategy</span>:
+          <span style="color:#66d9ef">hint</span>:
+            <span style="color:#66d9ef">shardingColumn</span>: order_id
+            <span style="color:#66d9ef">shardingAlgorithmName</span>: hint_inline
+    <span style="color:#66d9ef">shardingAlgorithms</span>:
+      <span style="color:#66d9ef">hint_class_based</span>:
+        <span style="color:#66d9ef">type</span>: CLASS_BASED
+        <span style="color:#66d9ef">props</span>:
+          <span style="color:#66d9ef">strategy</span>: STANDARD
           <span style="color:#66d9ef">algorithmClassName</span>: xxx.xxx.xxx.HintXXXAlgorithm
-      <span style="color:#66d9ef">tableStrategy</span>:
-        <span style="color:#66d9ef">hint</span>:
-          <span style="color:#66d9ef">algorithmClassName</span>: xxx.xxx.xxx.HintXXXAlgorithm
-  <span style="color:#66d9ef">defaultTableStrategy</span>:
-    <span style="color:#66d9ef">none</span>:
-  <span style="color:#66d9ef">defaultKeyGenerateStrategy</span>:
-    <span style="color:#66d9ef">type</span>: SNOWFLAKE
-    <span style="color:#66d9ef">column</span>: order_id
+      <span style="color:#66d9ef">hint_inline</span>:
+        <span style="color:#66d9ef">type</span>: HINT_INLINE
+        <span style="color:#66d9ef">props</span>:
+          <span style="color:#66d9ef">algorithm-expression</span>: t_order_$-&gt;{value % <span style="color:#ae81ff">4</span>}
+    <span style="color:#66d9ef">defaultTableStrategy</span>:
+      <span style="color:#66d9ef">none</span>:
+    <span style="color:#66d9ef">defaultKeyGenerateStrategy</span>:
+      <span style="color:#66d9ef">type</span>: SNOWFLAKE
+      <span style="color:#66d9ef">column</span>: order_id
 
 <span style="color:#66d9ef">props</span>:
-    <span style="color:#66d9ef">sql-show</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#66d9ef">sql-show</span>: <span style="color:#66d9ef">true</span>
 </code></pre></div><h3 id="get-hintmanager">Get HintManager</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">HintManager hintManager <span style="color:#f92672">=</span> HintManager<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">();</span>
 </code></pre></div><h3 id="add-sharding-value">Add Sharding Value</h3>
@@ -14715,19 +14732,19 @@ Apache ShardingSphere will acquire sharding values from HintManager to route.</p
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="https://shardingsphere.apache.org/document/current/js/clipboard.min.js?1720946800"></script>
-    <script src="https://shardingsphere.apache.org/document/current/js/perfect-scrollbar.min.js?1720946800"></script>
-    <script src="https://shardingsphere.apache.org/document/current/js/perfect-scrollbar.jquery.min.js?1720946800"></script>
-    <script src="https://shardingsphere.apache.org/document/current/js/jquery.sticky.js?1720946800"></script>
-    <script src="https://shardingsphere.apache.org/document/current/js/featherlight.min.js?1720946800"></script>
-    <script src="https://shardingsphere.apache.org/document/current/js/highlight.pack.js?1720946800"></script>
+    <script src="https://shardingsphere.apache.org/document/current/js/clipboard.min.js?1720955551"></script>
+    <script src="https://shardingsphere.apache.org/document/current/js/perfect-scrollbar.min.js?1720955551"></script>
+    <script src="https://shardingsphere.apache.org/document/current/js/perfect-scrollbar.jquery.min.js?1720955551"></script>
+    <script src="https://shardingsphere.apache.org/document/current/js/jquery.sticky.js?1720955551"></script>
+    <script src="https://shardingsphere.apache.org/document/current/js/featherlight.min.js?1720955551"></script>
+    <script src="https://shardingsphere.apache.org/document/current/js/highlight.pack.js?1720955551"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://shardingsphere.apache.org/document/current/js/modernizr.custom-3.6.0.js?1720946800"></script>
-    <script src="https://shardingsphere.apache.org/document/current/js/learn.js?1720946800"></script>
-    <script src="https://shardingsphere.apache.org/document/current/js/hugo-learn.js?1720946800"></script>
+    <script src="https://shardingsphere.apache.org/document/current/js/modernizr.custom-3.6.0.js?1720955551"></script>
+    <script src="https://shardingsphere.apache.org/document/current/js/learn.js?1720955551"></script>
+    <script src="https://shardingsphere.apache.org/document/current/js/hugo-learn.js?1720955551"></script>
     
         
-            <script src="https://shardingsphere.apache.org/document/current/mermaid/mermaid.js?1720946800"></script>
+            <script src="https://shardingsphere.apache.org/document/current/mermaid/mermaid.js?1720955551"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });
