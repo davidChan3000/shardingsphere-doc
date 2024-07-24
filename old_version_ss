@@ -1,238 +1,146 @@
-commit a63b33e9944ca0f02a3bc84d0176c28ac3ef1e96
-Author: Cong Hu <iamhucong@gmail.com>
-Date:   Wed Jul 24 17:35:03 2024 +0800
+commit 3960fc92708156b9934b7b2c17303cd812bcc424
+Author: Ling Hengqian <linghengqian@outlook.com>
+Date:   Wed Jul 24 19:35:16 2024 +0800
 
-    Complete the documentation and testing of the code modifications in #32236. (#32244)
+    Provides Standalone Mode implementations of hsqldb and apache/derby (#32192)
 
-diff --git a/docs/document/content/reference/encrypt/_index.cn.md b/docs/document/content/reference/encrypt/_index.cn.md
-index 8f3c5b751c2..8e343b4bdde 100644
---- a/docs/document/content/reference/encrypt/_index.cn.md
-+++ b/docs/document/content/reference/encrypt/_index.cn.md
-@@ -72,6 +72,7 @@ Apache ShardingSphere 接收到该 SQL，通过用户提供的加密配置，发
-       type: AES
-       props:
-         aes-key-value: 123456abc
-+        digest-algorithm-name: SHA-1
-   tables:
-     t_user:
-       columns:
-diff --git a/docs/document/content/reference/encrypt/_index.en.md b/docs/document/content/reference/encrypt/_index.en.md
-index cc89a39e082..b101d47310f 100644
---- a/docs/document/content/reference/encrypt/_index.en.md
-+++ b/docs/document/content/reference/encrypt/_index.en.md
-@@ -65,6 +65,7 @@ Solution description: after selecting the appropriate encryption algorithm, such
-       type: AES
-       props:
-         aes-key-value: 123456abc
-+        digest-algorithm-name: SHA-1
-   tables:
-     t_user:
-       columns:
-diff --git a/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.cn.md b/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.cn.md
-index 06e3b98a9bb..289cc6e9619 100644
---- a/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.cn.md
-+++ b/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.cn.md
-@@ -58,6 +58,7 @@ rules:
-       type: AES
-       props:
-         aes-key-value: 123456abc
-+        digest-algorithm-name: SHA-1
-     assisted_encryptor:
-       type: MD5
-       props:
-diff --git a/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.en.md b/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.en.md
-index d0199ae8f74..0b5a2b7f6df 100644
---- a/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.en.md
-+++ b/docs/document/content/user-manual/common-config/builtin-algorithm/encrypt.en.md
-@@ -58,6 +58,7 @@ rules:
-       type: AES
-       props:
-         aes-key-value: 123456abc
-+        digest-algorithm-name: SHA-1
-     assisted_encryptor:
-       type: MD5
-       props:
-diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/encrypt.cn.md b/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/encrypt.cn.md
-index 2c7e4268714..6679c67bcc8 100644
---- a/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/encrypt.cn.md
-+++ b/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/encrypt.cn.md
-@@ -83,6 +83,7 @@ public final class EncryptDatabasesConfiguration {
-     public DataSource getDataSource() throws SQLException {
-         Properties props = new Properties();
-         props.setProperty("aes-key-value", "123456");
-+        props.setProperty("digest-algorithm-name", "SHA-1");
-         EncryptColumnRuleConfiguration columnConfigAes = new EncryptColumnRuleConfiguration("username", new EncryptColumnItemRuleConfiguration("username", "name_encryptor"));
-         EncryptColumnRuleConfiguration columnConfigTest = new EncryptColumnRuleConfiguration("pwd", new EncryptColumnItemRuleConfiguration("pwd", "pwd_encryptor"));
-         columnConfigTest.setAssistedQuery(new EncryptColumnItemRuleConfiguration("assisted_query_pwd", "pwd_encryptor"));
-diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/encrypt.en.md b/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/encrypt.en.md
-index fc6a4593e44..6e418013602 100644
---- a/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/encrypt.en.md
-+++ b/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/encrypt.en.md
-@@ -83,6 +83,7 @@ public final class EncryptDatabasesConfiguration {
-     public DataSource getDataSource() throws SQLException {
-         Properties props = new Properties();
-         props.setProperty("aes-key-value", "123456");
-+        props.setProperty("digest-algorithm-name", "SHA-1");
-         EncryptColumnRuleConfiguration columnConfigAes = new EncryptColumnRuleConfiguration("username", new EncryptColumnItemRuleConfiguration("username", "name_encryptor"));
-         EncryptColumnRuleConfiguration columnConfigTest = new EncryptColumnRuleConfiguration("pwd", new EncryptColumnItemRuleConfiguration("pwd", "pwd_encryptor"));
-         columnConfigTest.setAssistedQuery(new EncryptColumnItemRuleConfiguration("assisted_query_pwd", "pwd_encryptor"));
-diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/mix.cn.md b/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/mix.cn.md
-index 7dda870ce5e..ce1a3d4b79d 100644
---- a/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/mix.cn.md
-+++ b/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/mix.cn.md
-@@ -44,6 +44,7 @@ private static ReadwriteSplittingRuleConfiguration createReadwriteSplittingConfi
- private static EncryptRuleConfiguration createEncryptRuleConfiguration() {
-     Properties props = new Properties();
-     props.setProperty("aes-key-value", "123456");
-+    props.setProperty("digest-algorithm-name", "SHA-1");
-     EncryptColumnRuleConfiguration columnConfigAes = new EncryptColumnRuleConfiguration("username", new EncryptColumnItemRuleConfiguration("username", "name_encryptor"));
-     EncryptColumnRuleConfiguration columnConfigTest = new EncryptColumnRuleConfiguration("pwd", new EncryptColumnItemRuleConfiguration("pwd", "pwd_encryptor"));
-     columnConfigTest.setAssistedQuery(new EncryptColumnItemRuleConfiguration("assisted_query_pwd", "pwd_encryptor"));
-diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/mix.en.md b/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/mix.en.md
-index d5efc517b47..2aaa5f0a621 100644
---- a/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/mix.en.md
-+++ b/docs/document/content/user-manual/shardingsphere-jdbc/java-api/rules/mix.en.md
-@@ -45,6 +45,7 @@ private static ReadwriteSplittingRuleConfiguration createReadwriteSplittingConfi
- private static EncryptRuleConfiguration createEncryptRuleConfiguration() {
-     Properties props = new Properties();
-     props.setProperty("aes-key-value", "123456");
-+    props.setProperty("digest-algorithm-name", "SHA-1");
-     EncryptColumnRuleConfiguration columnConfigAes = new EncryptColumnRuleConfiguration("username", new EncryptColumnItemRuleConfiguration("username", "name_encryptor"));
-     EncryptColumnRuleConfiguration columnConfigTest = new EncryptColumnRuleConfiguration("pwd", new EncryptColumnItemRuleConfiguration("pwd", "pwd_encryptor"));
-     columnConfigTest.setAssistedQuery(new EncryptColumnItemRuleConfiguration("assisted_query_pwd", "pwd_encryptor"));
-diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/encrypt.cn.md b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/encrypt.cn.md
-index f72a0b80697..ed97ecef0eb 100644
---- a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/encrypt.cn.md
-+++ b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/encrypt.cn.md
-@@ -81,6 +81,7 @@ rules:
-       type: AES
-       props:
-         aes-key-value: 123456abc
-+        digest-algorithm-name: SHA-1
-     assisted_encryptor:
-       type: MD5
-     like_encryptor:
-diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/encrypt.en.md b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/encrypt.en.md
-index e1d1f6ccec8..7f657051151 100644
---- a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/encrypt.en.md
-+++ b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/encrypt.en.md
-@@ -82,6 +82,7 @@ rules:
-       type: AES
-       props:
-         aes-key-value: 123456abc
-+        digest-algorithm-name: SHA-1
-     assisted_encryptor:
-       type: MD5
-     like_encryptor:
-diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/mix.cn.md b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/mix.cn.md
-index eb847555fe6..e919f59c018 100644
---- a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/mix.cn.md
-+++ b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/mix.cn.md
-@@ -102,6 +102,7 @@ rules:
-       type: AES
-       props:
-         aes-key-value: 123456abc
-+        digest-algorithm-name: SHA-1
-     assisted_encryptor:
-       type: MD5
-     like_encryptor:
-diff --git a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/mix.en.md b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/mix.en.md
-index 147039e7f7a..70ad32db5e5 100644
---- a/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/mix.en.md
-+++ b/docs/document/content/user-manual/shardingsphere-jdbc/yaml-config/rules/mix.en.md
-@@ -103,6 +103,7 @@ rules:
-       type: AES
-       props:
-         aes-key-value: 123456abc
-+        digest-algorithm-name: SHA-1
-     assisted_encryptor:
-       type: MD5
-     like_encryptor:
-diff --git a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/encrypt/show-encrypt-rule.cn.md b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/encrypt/show-encrypt-rule.cn.md
-index fc680f102af..a16c71bd4fc 100644
---- a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/encrypt/show-encrypt-rule.cn.md
-+++ b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/encrypt/show-encrypt-rule.cn.md
-@@ -60,8 +60,8 @@ mysql> SHOW ENCRYPT RULES FROM encrypt_db;
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- | table     | logic_column | cipher_column | assisted_query_column | like_query_column | encryptor_type | encryptor_props         | assisted_query_type | assisted_query_props | like_query_type | like_query_props |
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
--| t_user    | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc |                     |                      |                 |                  |
--| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc |                     |                      |                 |                  |
-+| t_user    | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc, digest-algorithm-name=SHA-1 |                     |                      |                 |                  |
-+| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc, digest-algorithm-name=SHA-1 |                     |                      |                 |                  |
- +-----------+--------------+---------------+--------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- 2 rows in set (0.00 sec)
- ```
-@@ -77,8 +77,8 @@ mysql> SHOW ENCRYPT RULES;
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- | table     | logic_column | cipher_column | assisted_query_column | like_query_column | encryptor_type | encryptor_props         | assisted_query_type | assisted_query_props | like_query_type | like_query_props |
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
--| t_user    | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc |                     |                      |                 |                  |
--| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc |                     |                      |                 |                  |
-+| t_user    | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc, digest-algorithm-name=SHA-1 |                     |                      |                 |                  |
-+| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc, digest-algorithm-name=SHA-1 |                     |                      |                 |                  |
- +-----------+--------------+---------------+--------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- 2 rows in set (0.00 sec)
- ```
-@@ -94,7 +94,7 @@ mysql> SHOW ENCRYPT TABLE RULE t_encrypt FROM encrypt_db;
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- | table     | logic_column | cipher_column | assisted_query_column | like_query_column | encryptor_type | encryptor_props         | assisted_query_type | assisted_query_props | like_query_type | like_query_props |
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
--| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc |                     |                      |                 |                  |
-+| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc, digest-algorithm-name=SHA-1 |                     |                      |                 |                  |
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- 1 row in set (0.01 sec)
- ```
-@@ -110,7 +110,7 @@ mysql> SHOW ENCRYPT TABLE RULE t_encrypt;
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- | table     | logic_column | cipher_column | assisted_query_column | like_query_column | encryptor_type | encryptor_props         | assisted_query_type | assisted_query_props | like_query_type | like_query_props |
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
--| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc |                     |                      |                 |                  |
-+| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc, digest-algorithm-name=SHA-1 |                     |                      |                 |                  |
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- 1 row in set (0.01 sec)
- ```
-diff --git a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/encrypt/show-encrypt-rule.en.md b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/encrypt/show-encrypt-rule.en.md
-index 9bf0391baf4..121f80fb538 100644
---- a/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/encrypt/show-encrypt-rule.en.md
-+++ b/docs/document/content/user-manual/shardingsphere-proxy/distsql/syntax/rql/rule-query/encrypt/show-encrypt-rule.en.md
-@@ -63,8 +63,8 @@ mysql> SHOW ENCRYPT RULES FROM encrypt_db;
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- | table     | logic_column | cipher_column | assisted_query_column | like_query_column | encryptor_type | encryptor_props         | assisted_query_type | assisted_query_props | like_query_type | like_query_props |
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
--| t_user    | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc |                     |                      |                 |                  |
--| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc |                     |                      |                 |                  |
-+| t_user    | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc, digest-algorithm-name=SHA-1 |                     |                      |                 |                  |
-+| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc, digest-algorithm-name=SHA-1 |                     |                      |                 |                  |
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- 2 rows in set (0.00 sec)
- ```
-@@ -80,8 +80,8 @@ mysql> SHOW ENCRYPT RULES;
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- | table     | logic_column | cipher_column | assisted_query_column | like_query_column | encryptor_type | encryptor_props         | assisted_query_type | assisted_query_props | like_query_type | like_query_props |
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
--| t_user    | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc |                     |                      |                 |                  |
--| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc |                     |                      |                 |                  |
-+| t_user    | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc, digest-algorithm-name=SHA-1 |                     |                      |                 |                  |
-+| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc, digest-algorithm-name=SHA-1 |                     |                      |                 |                  |
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- 2 rows in set (0.00 sec)
- ```
-@@ -97,7 +97,7 @@ mysql> SHOW ENCRYPT TABLE RULE t_encrypt FROM encrypt_db;
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- | table     | logic_column | cipher_column | assisted_query_column | like_query_column | encryptor_type | encryptor_props         | assisted_query_type | assisted_query_props | like_query_type | like_query_props |
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
--| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc |                     |                      |                 |                  |
-+| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc, digest-algorithm-name=SHA-1 |                     |                      |                 |                  |
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- 1 row in set (0.01 sec)
- ```
-@@ -113,7 +113,7 @@ mysql> SHOW ENCRYPT TABLE RULE t_encrypt;
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- | table     | logic_column | cipher_column | assisted_query_column | like_query_column | encryptor_type | encryptor_props         | assisted_query_type | assisted_query_props | like_query_type | like_query_props |
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
--| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc |                     |                      |                 |                  |
-+| t_encrypt | pwd          | pwd_cipher    |                       |                   | AES            | aes-key-value=123456abc, digest-algorithm-name=SHA-1 |                     |                      |                 |                  |
- +-----------+--------------+---------------+-----------------------+-------------------+----------------+-------------------------+---------------------+----------------------+-----------------+------------------+
- 1 row in set (0.01 sec)
- ```
+diff --git a/docs/document/content/user-manual/common-config/builtin-algorithm/metadata-repository.cn.md b/docs/document/content/user-manual/common-config/builtin-algorithm/metadata-repository.cn.md
+index d3880773678..4ebc81efdf9 100644
+--- a/docs/document/content/user-manual/common-config/builtin-algorithm/metadata-repository.cn.md
++++ b/docs/document/content/user-manual/common-config/builtin-algorithm/metadata-repository.cn.md
+@@ -11,19 +11,58 @@ Apache ShardingSphere 为不同的运行模式提供了不同的元数据持久
+ 
+ ### 数据库持久化
+ 
++`provider` 的可选值为 H2，MySQL，EmbeddedDerby，DerbyNetworkServer，HSQLDB。
++由于第三方的 Vulnerability Report 时常误报 H2 Database，避免在 ShardingSphere Standalone Mode 使用 H2 Database 可能是一种选择。
++讨论 `provider` 不为默认值 `H2` 的情况。
++
++1. 若 `provider` 设置为 `MySQL`，则要求存在已就绪的 MySQL Server。classpath 应包含 `com.mysql:mysql-connector-j:9.0.0` 的 Maven 依赖。
++2. 若 `provider` 设置为 `EmbeddedDerby`，则 Derby 数据库引擎将在与应用程序相同的 JVM 内运行。
++classpath 应包含 `org.apache.derby:derby:10.17.1.0` 和 `org.apache.derby:derbytools:10.17.1.0` 的 Maven 依赖，
++且要求编译或运行下游项目的 JDK 版本大于或等于 JDK19。可能的配置如下。
++
++```yaml
++mode:
++  type: Standalone
++  repository:
++    type: JDBC
++    props:
++      provider: EmbeddedDerby
++      jdbc_url: jdbc:derby:memory:config;create=true
++      username:
++```
++
++3. 若 `provider` 设置为 `DerbyNetworkServer`，则要求存在已就绪的 Derby Network Server。
++Derby Network Server 不存在可用的 Docker Image，用户可能需要手动启动 Derby Network Server。
++classpath 应包含 `org.apache.derby:derbyclient:10.17.1.0` 和 `org.apache.derby:derbytools:10.17.1.0` 的 Maven 依赖，
++且要求编译或运行下游项目的 JDK 版本大于或等于 JDK19。
++4. 若 `provider` 设置为 `HSQLDB`，则要求存在已就绪的采用 Server Modes 的 HyperSQL，或以 in-process database 的方式创建数据库。
++classpath 应包含 `classifier` 为 `jdk8` 的 `org.hsqldb:hsqldb:2.7.3` 的 Maven 依赖。
++采用 Server Modes 的 HyperSQL 不存在可用的 Docker Image，用户可能需要手动启动 Server Modes 的 HyperSQL。
++若使用 mem: protocol 的 HyperSQL，则可能的配置如下，
++
++```yaml
++mode:
++  type: Standalone
++  repository:
++    type: JDBC
++    props:
++      provider: HSQLDB
++      jdbc_url: jdbc:hsqldb:mem:config
++      username: SA
++```
++
+ 类型：JDBC
+ 
+ 适用模式：Standalone
+ 
+ 可配置属性：
+ 
+-| *名称*     | *数据类型* | *说明*                  | *默认值*                                                                   |
+-|----------|--------|-----------------------|-------------------------------------------------------------------------|
+-| provider | String | 元数据存储类型，可选值为 H2，MySQL | H2                                                                      |
+-| jdbc_url | String | JDBC URL              | jdbc:h2:mem:config;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;MODE=MYSQL |
+-| username | String | 账号                    | sa                                                                      |
+-| password | String | 密码                    |                                                                         |
+-
++| *名称*     | *数据类型* | *说明*     | *默认值*                                                                   |
++|----------|--------|----------|-------------------------------------------------------------------------|
++| provider | String | 元数据存储类型  | H2                                                                      |
++| jdbc_url | String | JDBC URL | jdbc:h2:mem:config;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;MODE=MYSQL |
++| username | String | 账号       | sa                                                                      |
++| password | String | 密码       |                                                                         |
+ 
+ ### ZooKeeper 持久化
+ 
+diff --git a/docs/document/content/user-manual/common-config/builtin-algorithm/metadata-repository.en.md b/docs/document/content/user-manual/common-config/builtin-algorithm/metadata-repository.en.md
+index 4d7d56aa092..95fa998a8d8 100644
+--- a/docs/document/content/user-manual/common-config/builtin-algorithm/metadata-repository.en.md
++++ b/docs/document/content/user-manual/common-config/builtin-algorithm/metadata-repository.en.md
+@@ -11,19 +11,58 @@ Apache ShardingSphere provides different metadata persistence methods for differ
+ 
+ ### Database Repository
+ 
++The optional values of `provider` are H2, MySQL, EmbeddedDerby, DerbyNetworkServer and HSQLDB.
++Since third-party Vulnerability Reports often misreport H2 Database, avoiding the use of H2 Database in ShardingSphere Standalone Mode may be an option.
++Discuss the case where `provider` is not the default value `H2`.
++
++1. If `provider` is set to `MySQL`, a ready MySQL Server is required. The classpath should contain the Maven dependency of `com.mysql:mysql-connector-j:9.0.0`.
++2. If `provider` is set to `EmbeddedDerby`, the Derby database engine will run in the same JVM as the application.
++   The classpath should contain Maven dependencies of `org.apache.derby:derby:10.17.1.0` and `org.apache.derby:derbytools:10.17.1.0`, 
++   and the JDK version required to compile or run the downstream project is greater than or equal to JDK19. Possible configurations are as follows.
++
++```yaml
++mode:
++  type: Standalone
++  repository:
++    type: JDBC
++    props:
++      provider: EmbeddedDerby
++      jdbc_url: jdbc:derby:memory:config;create=true
++      username:
++```
++
++3. If `provider` is set to `DerbyNetworkServer`, a ready Derby Network Server is required.
++   There is no available Docker Image for Derby Network Server, and users may need to start Derby Network Server manually.
++   The classpath should contain Maven dependencies of `org.apache.derby:derbyclient:10.17.1.0` and `org.apache.derby:derbytools:10.17.1.0`, 
++   and the JDK version required to compile or run the downstream project is greater than or equal to JDK19.
++4. If `provider` is set to `HSQLDB`, a ready HyperSQL using Server Modes is required, or a database is created as an in-process database.
++   The classpath should contain the Maven dependency of `org.hsqldb:hsqldb:2.7.3` with `classifier` as `jdk8`.
++   There is no available Docker Image for HyperSQL using Server Modes, and users may need to manually start HyperSQL using Server Modes.
++   If HyperSQL using mem: protocol is used, the possible configuration is as follows,
++
++```yaml
++mode:
++   type: Standalone
++   repository:
++      type: JDBC
++      props:
++         provider: HSQLDB
++         jdbc_url: jdbc:hsqldb:mem:config
++         username: SA
++```
++
+ Type: JDBC
+ 
+ Mode: Standalone
+ 
+ Attributes:
+ 
+-| *Name*   | *Type* | *Description*                                              | *Default Value*                                                         |
+-|----------|--------|------------------------------------------------------------|-------------------------------------------------------------------------|
+-| provider | String | Type for metadata persist, the optional value is H2, MySQL | H2                                                                      |
+-| jdbc_url | String | JDBC URL                                                   | jdbc:h2:mem:config;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;MODE=MYSQL |
+-| username | String | username                                                   | sa                                                                      |
+-| password | String | password                                                   |                                                                         |
+-
++| *Name*   | *Type* | *Description*             | *Default Value*                                                         |
++|----------|--------|---------------------------|-------------------------------------------------------------------------|
++| provider | String | Type for metadata persist | H2                                                                      |
++| jdbc_url | String | JDBC URL                  | jdbc:h2:mem:config;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false;MODE=MYSQL |
++| username | String | username                  | sa                                                                      |
++| password | String | password                  |                                                                         |
+ 
+ ### ZooKeeper Repository
+ 
