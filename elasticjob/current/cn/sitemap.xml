@@ -619,6 +619,20 @@
   </url>
   
   <url>
+    <loc>https://shardingsphere.apache.org/elasticjob/current/cn/user-manual/configuration/graalvm-native-image/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://shardingsphere.apache.org/elasticjob/current/en/user-manual/configuration/graalvm-native-image/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="https://shardingsphere.apache.org/elasticjob/current/cn/user-manual/configuration/graalvm-native-image/"
+                />
+  </url>
+  
+  <url>
     <loc>https://shardingsphere.apache.org/elasticjob/current/cn/downloads/</loc>
     <xhtml:link
                 rel="alternate"
