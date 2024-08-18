@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>PostgreSQLPipelineFreemarkerManager xref</title>
-<link type="text/css" rel="stylesheet" href="../../../../../../../stylesheet.css" />
+<link type="text/css" rel="stylesheet" href="../../../../../../../../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../../../../../../../apidocs/org/apache/shardingsphere/data/pipeline/postgresql/util/PostgreSQLPipelineFreemarkerManager.html">View Javadoc</a></div><pre>
+<div id="overview"><a href="../../../../../../../../../apidocs/org/apache/shardingsphere/data/pipeline/postgresql/sqlbuilder/template/PostgreSQLPipelineFreemarkerManager.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Licensed to the Apache Software Foundation (ASF) under one or more</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * contributor license agreements.  See the NOTICE file distributed with</em>
@@ -23,7 +23,7 @@
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_comment"> * limitations under the License.</em>
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">package</strong> org.apache.shardingsphere.data.pipeline.postgresql.util;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">package</strong> org.apache.shardingsphere.data.pipeline.postgresql.sqlbuilder.template;
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> freemarker.template.Configuration;
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> freemarker.template.Template;
@@ -43,7 +43,7 @@
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment"> * PostgreSQL pipeline freemarker manager.</em>
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  @NoArgsConstructor(access = AccessLevel.PRIVATE)
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="PostgreSQLPipelineFreemarkerManager" href="../../../../../../../org/apache/shardingsphere/data/pipeline/postgresql/util/PostgreSQLPipelineFreemarkerManager.html#PostgreSQLPipelineFreemarkerManager">PostgreSQLPipelineFreemarkerManager</a> {
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="PostgreSQLPipelineFreemarkerManager" href="../../../../../../../../org/apache/shardingsphere/data/pipeline/postgresql/sqlbuilder/template/PostgreSQLPipelineFreemarkerManager.html#PostgreSQLPipelineFreemarkerManager">PostgreSQLPipelineFreemarkerManager</a> {
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>      
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Map&lt;Integer, String&gt; VERSION_PATHS = <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;&gt;();
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>      
