@@ -15203,22 +15203,22 @@
 <th>Project</th>
 <th>Line</th></tr>
 <tr class="b">
-<td align="left">org/apache/shardingsphere/infra/database/opengauss/checker/OpenGaussDatabaseEnvironmentChecker.java</td>
+<td align="left">org/apache/shardingsphere/infra/database/opengauss/checker/OpenGaussDatabasePrivilegeChecker.java</td>
 <td>shardingsphere-infra-database-opengauss</td>
-<td><a href="./xref/org/apache/shardingsphere/infra/database/opengauss/checker/OpenGaussDatabaseEnvironmentChecker.html#L40">40</a></td></tr>
+<td><a href="./xref/org/apache/shardingsphere/infra/database/opengauss/checker/OpenGaussDatabasePrivilegeChecker.html#L40">40</a></td></tr>
 <tr class="a">
-<td align="left">org/apache/shardingsphere/infra/database/postgresql/checker/PostgreSQLDatabaseEnvironmentChecker.java</td>
+<td align="left">org/apache/shardingsphere/infra/database/postgresql/checker/PostgreSQLDatabasePrivilegeChecker.java</td>
 <td>shardingsphere-infra-database-postgresql</td>
-<td><a href="./xref/org/apache/shardingsphere/infra/database/postgresql/checker/PostgreSQLDatabaseEnvironmentChecker.html#L40">40</a></td></tr>
+<td><a href="./xref/org/apache/shardingsphere/infra/database/postgresql/checker/PostgreSQLDatabasePrivilegeChecker.html#L40">40</a></td></tr>
 <tr class="b">
 <td colspan="3" align="left">
 <div class="source">
-<pre>public final class OpenGaussDatabaseEnvironmentChecker implements DialectDatabaseEnvironmentChecker {
+<pre>public final class OpenGaussDatabasePrivilegeChecker implements DialectDatabasePrivilegeChecker {
     
     private static final String SHOW_GRANTS_SQL = &quot;SELECT * FROM pg_roles WHERE rolname = ?&quot;;
     
     @Override
-    public void checkPrivilege(final DataSource dataSource, final PrivilegeCheckType privilegeCheckType) {
+    public void check(final DataSource dataSource, final PrivilegeCheckType privilegeCheckType) {
         if (PrivilegeCheckType.PIPELINE != privilegeCheckType) {
             return;
         }
