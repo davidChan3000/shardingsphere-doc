@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <title>ViewMetaDataPersistService xref</title>
-<link type="text/css" rel="stylesheet" href="../../../../../../../stylesheet.css" />
+<link type="text/css" rel="stylesheet" href="../../../../../../../../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../../../../../../../apidocs/org/apache/shardingsphere/metadata/persist/service/table/ViewMetaDataPersistService.html">View Javadoc</a></div><pre>
+<div id="overview"><a href="../../../../../../../../../apidocs/org/apache/shardingsphere/metadata/persist/service/metadata/table/ViewMetaDataPersistService.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Licensed to the Apache Software Foundation (ASF) under one or more</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * contributor license agreements.  See the NOTICE file distributed with</em>
@@ -23,7 +23,7 @@
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_comment"> * limitations under the License.</em>
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">package</strong> org.apache.shardingsphere.metadata.persist.service.table;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">package</strong> org.apache.shardingsphere.metadata.persist.service.metadata.table;
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> com.google.common.base.Strings;
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> lombok.RequiredArgsConstructor;
@@ -48,11 +48,11 @@
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment"> * View meta data persist service.</em>
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  @RequiredArgsConstructor
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="ViewMetaDataPersistService" href="../../../../../../../org/apache/shardingsphere/metadata/persist/service/table/ViewMetaDataPersistService.html#ViewMetaDataPersistService">ViewMetaDataPersistService</a> {
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="ViewMetaDataPersistService" href="../../../../../../../../org/apache/shardingsphere/metadata/persist/service/metadata/table/ViewMetaDataPersistService.html#ViewMetaDataPersistService">ViewMetaDataPersistService</a> {
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>      
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a name="PersistRepository" href="../../../../../../../org/apache/shardingsphere/mode/spi/PersistRepository.html#PersistRepository">PersistRepository</a> repository;
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a name="PersistRepository" href="../../../../../../../../org/apache/shardingsphere/mode/spi/PersistRepository.html#PersistRepository">PersistRepository</a> repository;
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>      
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a name="MetaDataVersionPersistService" href="../../../../../../../org/apache/shardingsphere/metadata/persist/service/version/MetaDataVersionPersistService.html#MetaDataVersionPersistService">MetaDataVersionPersistService</a> metaDataVersionPersistService;
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a name="MetaDataVersionPersistService" href="../../../../../../../../org/apache/shardingsphere/metadata/persist/service/version/MetaDataVersionPersistService.html#MetaDataVersionPersistService">MetaDataVersionPersistService</a> metaDataVersionPersistService;
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>      
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_javadoccomment">     * Load views.</em>
@@ -74,10 +74,10 @@
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">     * @param viewName view name</em>
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">     * @return loaded view</em>
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>      <strong class="jxr_keyword">public</strong> <a name="ShardingSphereView" href="../../../../../../../org/apache/shardingsphere/infra/metadata/database/schema/model/ShardingSphereView.html#ShardingSphereView">ShardingSphereView</a> load(<strong class="jxr_keyword">final</strong> String databaseName, <strong class="jxr_keyword">final</strong> String schemaName, <strong class="jxr_keyword">final</strong> String viewName) {
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>      <strong class="jxr_keyword">public</strong> <a name="ShardingSphereView" href="../../../../../../../../org/apache/shardingsphere/infra/metadata/database/schema/model/ShardingSphereView.html#ShardingSphereView">ShardingSphereView</a> load(<strong class="jxr_keyword">final</strong> String databaseName, <strong class="jxr_keyword">final</strong> String schemaName, <strong class="jxr_keyword">final</strong> String viewName) {
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>          String view = repository.query(ViewMetaDataNode.getViewVersionNode(databaseName, schemaName, viewName,
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>                  repository.query(ViewMetaDataNode.getViewActiveVersionNode(databaseName, schemaName, viewName))));
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a name="YamlViewSwapper" href="../../../../../../../org/apache/shardingsphere/infra/yaml/schema/swapper/YamlViewSwapper.html#YamlViewSwapper">YamlViewSwapper</a>().swapToObject(YamlEngine.unmarshal(view, YamlShardingSphereView.<strong class="jxr_keyword">class</strong>));
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a name="YamlViewSwapper" href="../../../../../../../../org/apache/shardingsphere/infra/yaml/schema/swapper/YamlViewSwapper.html#YamlViewSwapper">YamlViewSwapper</a>().swapToObject(YamlEngine.unmarshal(view, YamlShardingSphereView.<strong class="jxr_keyword">class</strong>));
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>      }
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>      
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>      <em class="jxr_javadoccomment">/**</em>
@@ -94,11 +94,11 @@
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>              List&lt;String&gt; versions = repository.getChildrenKeys(ViewMetaDataNode.getViewVersionsNode(databaseName, schemaName, viewName));
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>              String nextActiveVersion = versions.isEmpty() ? MetaDataVersion.DEFAULT_VERSION : String.valueOf(Integer.parseInt(versions.get(0)) + 1);
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>              repository.persist(ViewMetaDataNode.getViewVersionNode(databaseName, schemaName, viewName, nextActiveVersion),
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>                      YamlEngine.marshal(<strong class="jxr_keyword">new</strong> <a name="YamlViewSwapper" href="../../../../../../../org/apache/shardingsphere/infra/yaml/schema/swapper/YamlViewSwapper.html#YamlViewSwapper">YamlViewSwapper</a>().swapToYamlConfiguration(entry.getValue())));
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>                      YamlEngine.marshal(<strong class="jxr_keyword">new</strong> <a name="YamlViewSwapper" href="../../../../../../../../org/apache/shardingsphere/infra/yaml/schema/swapper/YamlViewSwapper.html#YamlViewSwapper">YamlViewSwapper</a>().swapToYamlConfiguration(entry.getValue())));
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>              <strong class="jxr_keyword">if</strong> (Strings.isNullOrEmpty(getActiveVersion(databaseName, schemaName, viewName))) {
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>                  repository.persist(ViewMetaDataNode.getViewActiveVersionNode(databaseName, schemaName, viewName), MetaDataVersion.DEFAULT_VERSION);
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>              }
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>              metaDataVersions.add(<strong class="jxr_keyword">new</strong> <a name="MetaDataVersion" href="../../../../../../../org/apache/shardingsphere/infra/metadata/version/MetaDataVersion.html#MetaDataVersion">MetaDataVersion</a>(ViewMetaDataNode.getViewNode(databaseName, schemaName, viewName), getActiveVersion(databaseName, schemaName, viewName), nextActiveVersion));
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>              metaDataVersions.add(<strong class="jxr_keyword">new</strong> <a name="MetaDataVersion" href="../../../../../../../../org/apache/shardingsphere/infra/metadata/version/MetaDataVersion.html#MetaDataVersion">MetaDataVersion</a>(ViewMetaDataNode.getViewNode(databaseName, schemaName, viewName), getActiveVersion(databaseName, schemaName, viewName), nextActiveVersion));
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>          }
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>          metaDataVersionPersistService.switchActiveVersion(metaDataVersions);
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>      }
